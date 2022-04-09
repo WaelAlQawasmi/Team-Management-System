@@ -1,2 +1,2 @@
 # teamToDoList
-![WireFrame](image/wireFrame%20Project.png)
+![WireFrame image](image/wireFrame%20Project.png)
