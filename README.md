@@ -31,3 +31,5 @@ ___
 ## Social Comminication 
 
 * [Trello](https://trello.com/invite/b/iwH12lH3/ade3deb3e7a9d44370a03e5e2e1a13a8/todolistteam)
+
+* [Team Argumeent](TeamAgreement.md)
