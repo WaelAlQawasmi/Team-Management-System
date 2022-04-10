@@ -37,7 +37,6 @@ ___
 * [Requirements](Requirements.md)
 
 * [Project Idea](projectIdeas.md)
-
 ___
 
 # Begin Wireframes & Software Requirements
