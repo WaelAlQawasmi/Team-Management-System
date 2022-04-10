@@ -18,3 +18,9 @@
 - wireframe for the project.
 - database relationship schema.
 - presentation for the main requirements of the project.
+
+## Team members
+1. Wael Alqawasmi
+2. Roaa Hailat
+3. Motasem Alkilany
+4. Mohammad Aladarbeh
