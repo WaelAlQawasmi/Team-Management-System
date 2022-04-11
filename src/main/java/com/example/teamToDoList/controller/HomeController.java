@@ -12,8 +12,15 @@ public class HomeController {
         return "login";
     }
 
+
     @GetMapping("/signup")
     public String signupPage () {
         return "signup";
+    }
+
+    @GetMapping ("/listprofile")
+    public String todolistprofile () {
+        return "todolistprofile";
+
     }
 }
