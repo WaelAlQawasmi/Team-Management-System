@@ -1,10 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link th:href="@{main.css}"rel="stylesheet">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home Page</title>
+    <link th:href="@{/home.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-<h1>home page</h1>
+
+<header class="header">
+    <a href="#" class="logo">
+        <img src="assets/images/logo.png" alt="logo">
+    </a>
+    <nav class="navbar">
+        <a href="#home">home</a>
+        <a href="#about">about</a>
+        <a href="#login">login</a>
+        <a href="#signup">signUp</a>
+    </nav>
+</header>
+
+<section class="home" id="home">
+    <div class="content">
+        <h3>Team organizer</h3>
+        <p>Now you can organize your projects with your team by dividing your project tasks between the team members. You can create a to-do list and add your team members inside it.
+            And then link each member with his/her task. and make a due dates for these tasks. Also, you can reach remember your tasks easily by organize them in a separate page.</p>
+        <a href="#" class="btn">Get started now</a>
+    </div>
+</section>
+<!-- home section ends -->
+
+<!-- about section starts -->
+<section class="about" id="about">
+    <h1 class="heading"> <span> about </span> us </h1>
+    <div class="row">
+        <div class="image">
+            <img src="assets/images/about-img.jpeg" alt="">
+        </div>
+        <div class="content">
+            <h3>Group1 of java course in LTUC</h3>
+            <p>This website is a midterm project of group1 of java course in LTUC in jordan</p>
+            <p>Our Group names: <br>- Wael Alqawasmi <br>- Roaa Hailat <br>- Motasem Alkilany <br>- Mohammad Aladarbeh</p>
+            <p>We are building an organizer website, so you can organize your projects with your team by dividing your project tasks between the team members. You can create a to-do list and add your team members inside it.
+                And then you can link each member with his/her task. and make a due dates for these tasks. Also, you can reach remember your tasks easily by organize them in a separate page.</p>
+        </div>
+    </div>
+</section>
+
+<!-- footer -->
+
+<section class="footer">
+    <div class="share">
+        <a href="#" class="fab fa-facebook-f"></a>
+        <a href="#" class="fab fa-twitter"></a>
+        <a href="#" class="fab fa-pinterest"></a>
+        <a href="#" class="fab fa-linkedin"></a>
+        <a href="#" class="fab fa-instagram"></a>
+    </div>
+
+    <div class="links">
+        <a href="">home</a>
+        <a href="">about</a>
+        <a href="">login</a>
+        <a href="">signup</a>
+    </div>
+
+    <div class="credit">&copy;created by <span> Group1 </span> | all rights reserved</div>
+
+<section class="menu" id="menu">
+    <h1 class="heading"> our <span>menu</span></h1>
+    <div class="box-container">
+        <div class="box">
+            <img src="assets/images//menu-1.png" alt="">
+            <h3>tasty and healty</h3>
+            <div class="price">$15.99 <span>20.99</span></div>
+            <a href="#" class="btn">add to cart</a>
+        </div>
+
+        <div class="box">
+            <img src="assets/images//menu-2.png" alt="">
+            <h3>tasty and healty</h3>
+            <div class="price">$15.99 <span>20.99</span></div>
+            <a href="#" class="btn">add to cart</a>
+        </div>
+
+        <div class="box">
+            <img src="assets/images//menu-3.png" alt="">
+            <h3>tasty and healty</h3>
+            <div class="price">$15.99 <span>20.99</span></div>
+            <a href="#" class="btn">add to cart</a>
+        </div>
+
+        <div class="box">
+            <img src="assets/images//menu-4.png" alt="">
+            <h3>tasty and healty</h3>
+            <div class="price">$15.99 <span>20.99</span></div>
+            <a href="#" class="btn">add to cart</a>
+        </div>
+
+        <div class="box">
+            <img src="assets/images//menu-5.png" alt="">
+            <h3>tasty and healty</h3>
+            <div class="price">$15.99 <span>20.99</span></div>
+            <a href="#" class="btn">add to cart</a>
+        </div>
+
+        <div class="box">
+            <img src="assets/images//menu-6.png" alt="">
+            <h3>tasty and healty</h3>
+            <div class="price">$15.99 <span>20.99</span></div>
+            <a href="#" class="btn">add to cart</a>
+        </div>
+    </div>
+
+</section>
 </body>
 </html>

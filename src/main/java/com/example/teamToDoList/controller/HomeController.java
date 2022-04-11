@@ -28,6 +28,11 @@ public class HomeController {
         return "todolistprofile";
 
     }
+
+    @GetMapping("/home")
+    public String getHomePage(){
+        return "home";
+
     @GetMapping ("/toDoListName")
     public String toDoListName () {
         return "toDoListName";
@@ -44,8 +49,21 @@ public class HomeController {
 
     }
 
+
     @GetMapping ("/forgot")
     public String forgotPage () {
         return "forgot";
+
+    @GetMapping ("/task")
+    public String task () {
+        return "myTask";
+
+    }
+
+    @GetMapping ("/profile")
+    public String userProfile () {
+        return "userProfile";
+
+
     }
 }
