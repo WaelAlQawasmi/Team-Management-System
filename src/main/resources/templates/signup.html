@@ -7,7 +7,7 @@
     <!--<title> Login and Registration Form in HTML & CSS | CodingLab </title>-->
     <link rel="stylesheet" href="style.css">
     <!-- Fontawesome CDN Link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -25,22 +25,27 @@
                         </div>
                         <!-- Last Name -->
                         <div class="input-box">
-                            <i class="fas fa-envelope"></i>
+                            <i class="fas fa-user"></i>
                             <input type="text" placeholder="Last Name" required>
+                        </div>
+                        <!-- Email Address-->
+                        <div class="input-box">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" placeholder="Enter Your Email" required>
                         </div>
                         <!-- Birth Day-->
                         <div class="input-box">
-                            <i class="fas fa-lock"></i>
+                            <i class="fa-solid fa-cake-candles"></i>
                             <input type="date" placeholder="Birth Day" required>
                         </div>
                         <!-- Phone-->
                         <div class="input-box">
-                            <i class="fas fa-lock"></i>
+                            <i class="fa-solid fa-phone"></i>
                             <input type="text" placeholder="Your Phone" required>
                         </div>
                         <!-- Username-->
                         <div class="input-box">
-                            <i class="fas fa-lock"></i>
+                            <i class="fas fa-user"></i>
                             <input type="text" placeholder="Enter your Username" required>
                         </div>
                         <!-- password-->
@@ -48,11 +53,12 @@
                             <i class="fas fa-lock"></i>
                             <input type="password" placeholder="Enter your Password" required>
                         </div>
-
+                        <!-- Submit Button -->
                         <div class="button input-box">
                             <input type="submit" value="Sumbit">
                         </div>
-                        <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
+                        <!-- Login link -->
+                        <div class="text sign-up-text">Already have an account? <a th:href="@{'/login'}"><label for="flip">Login now</label></a> </div>
                     </div>
                 </form>
             </div>
