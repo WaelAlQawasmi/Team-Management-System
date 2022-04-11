@@ -11,7 +11,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #7d2ae8;
+    background: #FBF8F1;
     padding: 30px;
 }
 .container{
@@ -30,9 +30,6 @@ body{
     height: 100%;
     width: 50%;
     z-index: 98;
-    transition: all 1s ease;
-    transform-origin: left;
-    transform-style: preserve-3d;
 }
 .container #flip:checked ~ .cover{
     transform: rotateY(-180deg);
@@ -45,6 +42,15 @@ body{
     height: 100%;
     width: 100%;
 }
+.container .cover .forgot {
+    position: absolute;
+    align-items: center;
+    text-align: center;
+    top: 25%;
+    height: 50%;
+    width: 50%;
+}
+
 .cover .back{
     transform: rotateY(180deg);
     backface-visibility: hidden;
@@ -55,8 +61,8 @@ body{
     position: absolute;
     height: 100%;
     width: 100%;
-    background: #7d2ae8;
-    opacity: 0.5;
+    background: white;
+    opacity: 0.1;
     z-index: 12;
 }
 .container .cover::after{
@@ -119,7 +125,7 @@ body{
     bottom: 0;
     height: 3px;
     width: 25px;
-    background: #7d2ae8;
+    background: #54BAB9;
 }
 .forms .signup-form  .title:before{
     width: 20px;
@@ -148,11 +154,11 @@ body{
 }
 .form-content .input-box input:focus,
 .form-content .input-box input:valid{
-    border-color: #7d2ae8;
+    border-color: #54BAB9;
 }
 .form-content .input-box i{
     position: absolute;
-    color: #7d2ae8;
+    color: black;
     font-size: 17px;
 }
 .forms .form-content .text{
@@ -160,6 +166,7 @@ body{
     font-weight: 500;
     color: #333;
 }
+
 .forms .form-content .text a{
     text-decoration: none;
 }
@@ -172,17 +179,17 @@ body{
 }
 .forms .form-content .button input{
     color: #fff;
-    background: #7d2ae8;
+    background: #54BAB9;
     border-radius: 6px;
     padding: 0;
     cursor: pointer;
     transition: all 0.4s ease;
 }
 .forms .form-content .button input:hover{
-    background: #5b13b9;
+    background: #E9DAC1;
+    color: black;
 }
 .forms .form-content label{
-    color: #5b13b9;
     cursor: pointer;
 }
 .forms .form-content label:hover{

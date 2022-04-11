@@ -18,6 +18,11 @@ public class HomeController {
         return "signup";
     }
 
+    @GetMapping("/login")
+    public String loginPage () {
+        return "login";
+    }
+
     @GetMapping ("/listprofile")
     public String todolistprofile () {
         return "todolistprofile";
@@ -37,5 +42,10 @@ public class HomeController {
     public String header () {
         return "header";
 
+    }
+
+    @GetMapping ("/forgot")
+    public String forgotPage () {
+        return "forgot";
     }
 }
