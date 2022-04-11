@@ -23,4 +23,8 @@ public class HomeController {
         return "todolistprofile";
 
     }
+    @GetMapping("/home")
+    public String getHomePage(){
+        return "home";
+    }
 }
