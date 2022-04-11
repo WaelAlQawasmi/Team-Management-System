@@ -38,4 +38,16 @@ public class HomeController {
         return "header";
 
     }
+
+    @GetMapping ("/task")
+    public String task () {
+        return "myTask";
+
+    }
+
+    @GetMapping ("/profile")
+    public String userProfile () {
+        return "userProfile";
+
+    }
 }
