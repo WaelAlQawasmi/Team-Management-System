@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{toDoListName.css}" rel="stylesheet">
 </head>
 <body>
+
+<section>
+
+    <div class="form">
+
+        <div>
+            <h1>New To Do List</h1>
+            <form action="#">
+                <input class="input_name"type="text" name="toDoListName" placeholder="Enter to do list name here"><br>
+                <input class="submit_name" type="submit" value="Continue">
+            </form>
+        </div>
+
+</section>
+
 
 </body>
 </html>

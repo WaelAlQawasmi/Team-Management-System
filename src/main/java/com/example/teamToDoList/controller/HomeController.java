@@ -23,4 +23,19 @@ public class HomeController {
         return "todolistprofile";
 
     }
+    @GetMapping ("/toDoListName")
+    public String toDoListName () {
+        return "toDoListName";
+
+    }
+    @GetMapping ("/error")
+    public String error () {
+        return "error";
+
+    }
+    @GetMapping ("/header")
+    public String header () {
+        return "header";
+
+    }
 }
