@@ -14,42 +14,29 @@
 <div class="container">
     <input type="checkbox" id="flip">
     <div class="cover">
-        <div class="front">
-            <img th:src="@{/frontImg.jpg}" alt="">
-            <div class="text">
-                <span class="text-1">Every new friend is a <br> new adventure</span>
-                <span class="text-2">Let's get connected</span>
-            </div>
+        <div class="forgot">
+            <img th:src="@{/forgot.png}" alt="">
         </div>
     </div>
     <div class="forms">
         <div class="form-content">
             <div class="login-form">
-                <div class="title">Login</div>
+                <div class="title">Forgot !!</div>
                 <form action="#">
                     <div class="input-boxes">
 
-                        <!-- Username -->
+                        <!-- email -->
                         <div class="input-box">
                             <i class="fas fa-user"></i>
-                            <input type="text" placeholder="Enter your Username" required>
+                            <input type="text" placeholder="Enter your Email" required>
                         </div>
-
-                        <!-- Password -->
-                        <div class="input-box">
-                            <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Enter your Password" required>
-                        </div>
-
-                        <!-- Forgot Password-->
-                        <div class="text"><a th:href="@{'/forgot'}">Forgot password?</a></div>
 
                         <!-- Submit Button -->
                         <div class="button input-box">
                             <input type="submit" value="Sumbit">
                         </div>
                         <!-- Signup Link -->
-                        <div class="text sign-up-text">Don't have an account? <label for="flip"><a th:href="${'/signup'}">Sigup now</a></label></div>
+                        <div class="text sign-up-text">back to Login page ! <label for="flip"><a th:href="${'/login'}">Login</a></label></div>
                     </div>
                 </form>
             </div>
