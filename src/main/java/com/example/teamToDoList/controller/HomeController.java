@@ -23,8 +23,36 @@ public class HomeController {
         return "todolistprofile";
 
     }
+
     @GetMapping("/home")
     public String getHomePage(){
         return "home";
+
+    @GetMapping ("/toDoListName")
+    public String toDoListName () {
+        return "toDoListName";
+
+    }
+    @GetMapping ("/error")
+    public String error () {
+        return "error";
+
+    }
+    @GetMapping ("/header")
+    public String header () {
+        return "header";
+
+    }
+
+    @GetMapping ("/task")
+    public String task () {
+        return "myTask";
+
+    }
+
+    @GetMapping ("/profile")
+    public String userProfile () {
+        return "userProfile";
+
     }
 }

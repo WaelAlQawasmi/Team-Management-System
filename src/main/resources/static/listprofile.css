@@ -2,6 +2,13 @@ body{
     margin-top:20px;
     background:#eee;
 }
+
+.btn-primary {
+    color: #fff;
+    background-color: #54BAB9fd;
+    border-color: #ebefec59;
+}
+.btn
 .card {
     box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
 }
