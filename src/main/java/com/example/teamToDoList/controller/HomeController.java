@@ -13,8 +13,14 @@ public class HomeController {
     }
 
 
+    @GetMapping("/signup")
+    public String signupPage () {
+        return "signup";
+    }
+
     @GetMapping ("/listprofile")
     public String todolistprofile () {
         return "todolistprofile";
+
     }
 }
