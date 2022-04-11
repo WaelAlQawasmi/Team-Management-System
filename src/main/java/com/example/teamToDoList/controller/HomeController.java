@@ -11,4 +11,9 @@ public class HomeController {
     public String homePage () {
         return "login";
     }
+
+    @GetMapping("/signup")
+    public String signupPage () {
+        return "signup";
+    }
 }
