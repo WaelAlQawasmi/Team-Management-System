@@ -11,4 +11,10 @@ public class HomeController {
     public String homePage () {
         return "login";
     }
+
+
+    @GetMapping ("/listprofile")
+    public String todolistprofile () {
+        return "todolistprofile";
+    }
 }
