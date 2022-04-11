@@ -32,8 +32,11 @@ ___
 
 * [Trello](https://trello.com/invite/b/iwH12lH3/ade3deb3e7a9d44370a03e5e2e1a13a8/todolistteam)
 
-* [Team Argumeent](TeamAgreement.md)
+* [Team Agreement](TeamAgreement.md)
 
+* [Requirements](Requirements.md)
+
+* [Project Idea](projectIdeas.md)
 ___
 
 # Begin Wireframes & Software Requirements
