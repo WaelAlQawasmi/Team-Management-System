@@ -98,7 +98,6 @@ body {
     min-height: 100vh;
     display:flex;
     align-items:center;
-    background: url(../assets/images/home-img.jpeg);
     background-size: cover;
     background-position: center;
 }
@@ -109,7 +108,7 @@ body {
 }
 .home .content h3 {
     font-size: 6rem;
-    text-decoration: uppercase;
+    text-transform: uppercase;
     color: #fff;
 }
 .home .content p {
@@ -284,16 +283,16 @@ body {
 
 
 }
-© 2022 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Loading complete
+/*© 2022 GitHub, Inc.*/
+/*Terms*/
+/*Privacy*/
+/*Security*/
+/*Status*/
+/*Docs*/
+/*Contact GitHub*/
+/*Pricing*/
+/*API*/
+/*Training*/
+/*Blog*/
+/*About*/
+/*Loading complete*/

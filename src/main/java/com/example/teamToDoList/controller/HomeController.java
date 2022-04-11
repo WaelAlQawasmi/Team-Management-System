@@ -9,7 +9,7 @@ public class HomeController {
 
     @GetMapping ("/")
     public String homePage () {
-        return "login";
+        return "home";
     }
 
 
@@ -24,46 +24,46 @@ public class HomeController {
     }
 
     @GetMapping ("/listprofile")
-    public String todolistprofile () {
+    public String toDoListProfile () {
         return "todolistprofile";
 
     }
 
     @GetMapping("/home")
-    public String getHomePage(){
+    public String getHomePage() {
         return "home";
-
-    @GetMapping ("/toDoListName")
-    public String toDoListName () {
-        return "toDoListName";
-
     }
-    @GetMapping ("/error")
-    public String error () {
-        return "error";
+        @GetMapping("/todolistname")
+        public String toDoListName () {
+            return "toDoListName";
 
+        }
+        @GetMapping("/error")
+        public String error () {
+            return "error";
+
+        }
+        @GetMapping("/header")
+        public String header () {
+            return "header";
+
+        }
+
+
+        @GetMapping("/forgot")
+        public String forgotPage () {
+            return "forgot";
+        }
+        @GetMapping("/task")
+        public String task () {
+            return "myTask";
+
+        }
+
+        @GetMapping("/profile")
+        public String userProfile () {
+            return "userProfile";
+
+
+        }
     }
-    @GetMapping ("/header")
-    public String header () {
-        return "header";
-
-    }
-
-
-    @GetMapping ("/forgot")
-    public String forgotPage () {
-        return "forgot";
-
-    @GetMapping ("/task")
-    public String task () {
-        return "myTask";
-
-    }
-
-    @GetMapping ("/profile")
-    public String userProfile () {
-        return "userProfile";
-
-
-    }
-}
