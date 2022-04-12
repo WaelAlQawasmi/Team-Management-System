@@ -53,4 +53,4 @@ import org.springframework.security.crypto.password.PasswordEncoder;
                     .deleteCookies("JSESSIONID"); //that we must use
         }
     }
-}
+

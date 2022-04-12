@@ -1,8 +1,6 @@
 package com.example.teamToDoList.models;
 
 import lombok.*;
-import org.springframework.security.GrantedAuthority;
-import org.springframework.security.userdetails.UserDetails;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

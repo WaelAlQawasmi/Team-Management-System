@@ -2,14 +2,18 @@ package com.example.teamToDoList.models;
 
 
 import lombok.*;
-import org.springframework.security.GrantedAuthority;
-import org.springframework.security.userdetails.UserDetails;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 
 import javax.persistence.Id;
+import java.util.Collection;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -40,27 +44,27 @@ public class users implements UserDetails {
 
 
     @Override
-    public GrantedAuthority[] getAuthorities() {
-        return new GrantedAuthority[0];
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
