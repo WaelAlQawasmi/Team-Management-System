@@ -11,6 +11,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
+
 public class todolistitems  {
     @Setter(value = AccessLevel.NONE)
     @Id

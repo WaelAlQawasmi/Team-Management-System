@@ -15,6 +15,8 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
+
+
 public class users implements UserDetails {
     @Setter(value = AccessLevel.NONE)
     @Id
