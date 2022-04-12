@@ -26,19 +26,19 @@
         <div class="form-content">
             <div class="login-form">
                 <div class="title">Login</div>
-                <form action="#">
+                <form action="/perform_login" method="POST">
                     <div class="input-boxes">
 
                         <!-- Username -->
                         <div class="input-box">
                             <i class="fas fa-user"></i>
-                            <input type="text" placeholder="Enter your Username" required>
+                            <input name="username" type="text" placeholder="Enter your Username" required>
                         </div>
 
                         <!-- Password -->
                         <div class="input-box">
                             <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Enter your Password" required>
+                            <input name="password" type="password" placeholder="Enter your Password" required>
                         </div>
 
                         <!-- Forgot Password-->
@@ -46,7 +46,7 @@
 
                         <!-- Submit Button -->
                         <div class="button input-box">
-                            <input type="submit" value="Sumbit">
+                            <input type="submit" value="Submit">
                         </div>
                         <!-- Signup Link -->
                         <div class="text sign-up-text">Don't have an account? <label for="flip"><a th:href="${'/signup'}">Sigup now</a></label></div>
