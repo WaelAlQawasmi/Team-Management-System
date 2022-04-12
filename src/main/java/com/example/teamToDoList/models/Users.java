@@ -14,8 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Collection;
 
-import java.util.List;
-
 
 @Setter
 @Getter
@@ -24,7 +22,7 @@ import java.util.List;
 @Entity
 
 
-public class users implements UserDetails {
+public class Users implements UserDetails {
     @Setter(value = AccessLevel.NONE)
     @Id
     @GeneratedValue
