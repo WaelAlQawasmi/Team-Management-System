@@ -27,13 +27,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
         }
 
         @Override
-        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
             auth.userDetailsService(userDetailsService).passwordEncoder(getPasswordEncoder());
 
         }
 
         @Override
-        protected void configure(HttpSecurity http) throws Exception {
+        protected void configure(final HttpSecurity http) throws Exception {
             http.cors().disable().csrf().disable()
                     .authorizeRequests()
                     .antMatchers("/login", "/signup", "/").permitAll() // allow access to login page without Authentication
@@ -41,13 +41,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
                     .anyRequest().authenticated() // any ather page need login
                     .and()
                     .formLogin() // in login form
-                    .loginPage("/login") // the GitMapping rout in controller of login
-                    .loginProcessingUrl("/perform_login") // the action of login form
-                    .defaultSuccessUrl("/home")
+                    .and().rememberMe().and().formLogin()
+                    .loginPage("/login").permitAll() // the GitMapping rout in controller of login
+                    .loginProcessingUrl("/login") // the action of login form
+                    .defaultSuccessUrl("/profile",true)
                     .failureUrl("/login")
                     .and()
                     .logout()
-                    .logoutUrl("/perform_logout")
+                    .logoutUrl("/logout")
                     .logoutSuccessUrl("/login")
                     .deleteCookies("JSESSIONID"); //that we must use
         }

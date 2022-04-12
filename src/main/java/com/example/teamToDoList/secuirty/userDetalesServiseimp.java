@@ -13,6 +13,7 @@ public class userDetalesServiseimp implements UserDetailsService { // this inter
     UsersRepositorie UserRebo;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {// you must added
+        System.out.println(username);
         return UserRebo.findByusername(username);
     }
 }

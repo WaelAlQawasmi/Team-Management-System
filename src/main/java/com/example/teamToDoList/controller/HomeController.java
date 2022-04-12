@@ -6,10 +6,13 @@ import com.example.teamToDoList.models.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.security.Principal;
 
 @Controller
 public class HomeController {
@@ -57,6 +60,7 @@ public class HomeController {
     public String getHomePage() {
         return "home";
     }
+
         @GetMapping("/todolistname")
         public String toDoListName () {
             return "toDoListName";
@@ -85,9 +89,10 @@ public class HomeController {
         }
 
         @GetMapping("/profile")
-        public String userProfile () {
+        public String userProfile (Principal p, Model model) {
+        Users newUser=usersRepositorie.findByusername(p.getName());
+        model.addAttribute("userInfo",newUser);
             return "userProfile";
-
 
         }
     }
