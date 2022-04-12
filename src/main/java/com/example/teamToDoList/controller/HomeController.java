@@ -33,7 +33,7 @@ public class HomeController {
     public String getHomePage() {
         return "home";
     }
-        @GetMapping("/toDoListName")
+        @GetMapping("/todolistname")
         public String toDoListName () {
             return "toDoListName";
 
