@@ -2,9 +2,9 @@
 
 :root {
     --main-color: #d3ad7f;
-    --black:#13131a;
+    --black:#FDF8F5;
     --bg:#010103;
-    --border: .1rem solid black;
+    --border: .1rem solid rgba(255,255,255,0.3);
 }
 * {
     font-family: 'Roboto', sens-serif;
@@ -36,7 +36,7 @@ html::-webkit-scrollbar-thumb {
 }
 
 body {
-    background: #e9dac169;
+    background: white;
 }
 
 section {
@@ -63,13 +63,14 @@ section {
     padding: .9rem 3rem;
     font-size: 1.7rem;
     color: #fff;
-    background: #6aa066;
+    background: #266150;
     cursor: pointer;
 }
 
 .btn:hover {
     letter-spacing: .2rem;
 }
+
 
 /* Header starts */
 .header {
@@ -78,7 +79,7 @@ section {
     align-items: center;
     justify-content: space-between;
     padding: 1.5rem 7%;
-    border-bottom: var(--border);
+    border-bottom: #464646;
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 1000;
@@ -91,7 +92,7 @@ section {
 .header .navbar a {
     margin: 0 1rem ;
     font-size: 1.6rem;
-    color: #fff;
+    color: #141414;
 }
 
 .header .navbar a:hover {
@@ -189,7 +190,7 @@ section {
 
 .header .cart-items-container .cart-item .content h3 {
     font-size: 2rem;
-    color: #54bab9;
+    color: var(--black);
     padding-bottom: .5rem;
 }
 
@@ -210,7 +211,7 @@ section {
     min-height: 100vh;
     display:flex;
     align-items:center;
-    background: url(../assets/images/home-img.jpeg);
+    background: url(../image/homeBackground.jpg);
     background-size: cover;
     background-position: center;
 }
@@ -222,16 +223,15 @@ section {
 .home .content h3 {
     font-size: 6rem;
     text-decoration: uppercase;
-    color: #54bab9;
+    color: #ADA498;
 }
 .home .content p {
     font-size: 1.5rem;
     font-weight: lighter;
     line-height:1.8;
     padding: 1rem 0;
-    color: #fff;
+    color: #5F5A54;
 }
-
 
 /* Home section ends */
 
@@ -239,7 +239,7 @@ section {
 .about .row {
     display: flex;
     align-items: center;
-    background: var(--black);
+    background: #FBF8F1;
     flex-wrap: wrap;
 }
 
@@ -257,12 +257,12 @@ section {
 
 .about .row .content h3 {
     font-size: 3rem;
-    color: #fff;
+    color: #ADA498;
 }
 
 .about .row .content p {
     font-size: 1.6rem;
-    color: #ccc;
+    color: #847D74;
     padding: 1rem 0;
     line-height: 1.8;
 }
@@ -529,7 +529,7 @@ section {
 
 /* footer section starts */
 .footer {
-    background: var(--black);
+    background: #E9DAC1;
     text-align: center;
 }
 
@@ -542,7 +542,7 @@ section {
     width: 5rem;
     line-height: 5rem;
     font-size: 2rem;
-    color: #fff;
+    color: #847D74;
     border: var(--border);
     margin: .3rem;
     border-radius: 50%;
@@ -563,7 +563,7 @@ section {
 
 .footer .links a {
     padding: .7rem 2rem;
-    color: #fff;
+    color: #847D74;
     border: var(--border);
     font-size: 2rem;
 }
@@ -574,7 +574,7 @@ section {
 }
 .footer .credit {
     font-size: 2rem;
-    color: #fff;
+    color: #847D74;
     font-weight: lighter;
     padding: 1.5rem;
 }
@@ -612,6 +612,9 @@ section {
 
 
 
+
+
+/* media queries */
 
 
 /* media queries */

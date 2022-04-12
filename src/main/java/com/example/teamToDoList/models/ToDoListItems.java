@@ -12,7 +12,7 @@ import javax.persistence.Id;
 @RequiredArgsConstructor
 @Entity
 
-public class todolistitems  {
+public class ToDoListItems {
     @Setter(value = AccessLevel.NONE)
     @Id
     @GeneratedValue
