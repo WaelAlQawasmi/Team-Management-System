@@ -37,6 +37,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
             http.cors().disable().csrf().disable()
                     .authorizeRequests()
                     .antMatchers("/login").permitAll() // allow to go to in without login
+                    .antMatchers("/image/**", "/css/**").permitAll()
+                    .antMatchers("/listprofile").permitAll()
+                    .antMatchers("/header").permitAll()
                     .antMatchers("/signup").permitAll()// allow to go to in without login
                     .antMatchers("/").permitAll()// allow to go to in without login
                     .anyRequest().authenticated() // any ather page need login
