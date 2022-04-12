@@ -46,7 +46,7 @@ section {
 
 .heading {
     text-align: center;
-    color: #fff;
+    color: var(--main-color);
     text-transform: uppercase;
     padding-bottom: 3.5rem;
     font-size: 4rem;
@@ -249,6 +249,7 @@ section {
 }
 .about .row .image img{
     width: 100%;
+    opacity: 0.5;
 }
 .about .row .content {
     flex: 1 1 45rem;

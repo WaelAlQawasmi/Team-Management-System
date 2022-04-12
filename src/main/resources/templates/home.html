@@ -16,8 +16,8 @@
     <nav class="navbar">
         <a href="#home">home</a>
         <a href="#about">about</a>
-        <a href="#login">login</a>
-        <a href="#signup">signUp</a>
+        <a th:href="@{/login}">login</a>
+        <a th:href="@{/signup}">signUp</a>
     </nav>
 </header>
 
@@ -26,7 +26,7 @@
         <h3>Team organizer</h3>
         <p>Now you can organize your projects with your team by dividing your project tasks between the team members. You can create a to-do list and add your team members inside it.
             And then link each member with his/her task. and make a due dates for these tasks. Also, you can reach remember your tasks easily by organize them in a separate page.</p>
-        <a href="#" class="btn">Get started now</a>
+        <a th:href="@{/signup}" class="btn">Get started now</a>
     </div>
 </section>
 <!-- home section ends -->
@@ -36,7 +36,7 @@
     <h1 class="heading"> <span> about </span> us </h1>
     <div class="row">
         <div class="image">
-            <img src="assets/images/about-img.jpeg" alt="">
+            <img src="/image/about-us.webp" alt="about-us">
         </div>
         <div class="content">
             <h3>Group1 of java course in LTUC</h3>
@@ -60,10 +60,10 @@
     </div>
 
     <div class="links">
-        <a href="">home</a>
-        <a href="">about</a>
-        <a href="">login</a>
-        <a href="">signup</a>
+        <a href="#home">home</a>
+        <a href="#about">about</a>
+        <a th:href="@{/login}">login</a>
+        <a th:href="@{/signup}">signup</a>
     </div>
 
     <div class="credit">&copy;created by <span> Group1 </span> | all rights reserved</div>
