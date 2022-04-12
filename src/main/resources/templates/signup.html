@@ -16,46 +16,56 @@
         <div class="form-content">
             <div class="signup-form">
                 <div class="title">Signup</div>
-                <form action="#">
+                <form action="/signup" method="POST">
                     <div class="input-boxes">
                         <!--First Name -->
                         <div class="input-box">
                             <i class="fas fa-user"></i>
-                            <input type="text" placeholder="First Name" required>
+                            <input name="firstName" type="text" placeholder="First Name" required>
                         </div>
                         <!-- Last Name -->
                         <div class="input-box">
                             <i class="fas fa-user"></i>
-                            <input type="text" placeholder="Last Name" required>
+                            <input name="lastName" type="text" placeholder="Last Name" required>
                         </div>
                         <!-- Email Address-->
                         <div class="input-box">
                             <i class="fa-solid fa-envelope"></i>
-                            <input type="email" placeholder="Enter Your Email" required>
+                            <input name="email" type="email" placeholder="Enter Your Email" required>
                         </div>
                         <!-- Birth Day-->
                         <div class="input-box">
                             <i class="fa-solid fa-cake-candles"></i>
-                            <input type="date" placeholder="Birth Day" required>
+                            <input name="birthDay" type="date" placeholder="Birth Day" required>
+                        </div>
+                        <!-- Position-->
+                        <div class="input-box">
+                            <i class="fa-solid fa-briefcase"></i>
+                            <input name="position" type="text" placeholder="Your Position" required>
+                        </div>
+                        <!-- Address-->
+                        <div class="input-box">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <input  name="address" type="text" placeholder="Enter Your Address" required>
                         </div>
                         <!-- Phone-->
                         <div class="input-box">
                             <i class="fa-solid fa-phone"></i>
-                            <input type="text" placeholder="Your Phone" required>
+                            <input name="phone" type="text" placeholder="Your Phone" required>
                         </div>
                         <!-- Username-->
                         <div class="input-box">
                             <i class="fas fa-user"></i>
-                            <input type="text" placeholder="Enter your Username" required>
+                            <input name="username" type="text" placeholder="Enter your Username" required>
                         </div>
                         <!-- password-->
                         <div class="input-box">
                             <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Enter your Password" required>
+                            <input name="password" type="password" placeholder="Enter your Password" required>
                         </div>
                         <!-- Submit Button -->
                         <div class="button input-box">
-                            <input type="submit" value="Sumbit">
+                            <input type="submit" value="Submit">
                         </div>
                         <!-- Login link -->
                         <div class="text sign-up-text">Already have an account? <a th:href="@{'/login'}"><label for="flip">Login now</label></a> </div>

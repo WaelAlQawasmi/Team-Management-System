@@ -19,7 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
         @Autowired // to acces to rebo methode without create anstans
         userDetalesServiseimp userDetailsService;
 
-        @Bean// to accec to any class methods without create instans
+        @Bean// to accec to any class methods without create instance
         public PasswordEncoder getPasswordEncoder(){ // auto created
             PasswordEncoder encoder = new BCryptPasswordEncoder();// to select the encode
 
@@ -36,18 +36,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
         protected void configure(HttpSecurity http) throws Exception {
             http.cors().disable().csrf().disable()
                     .authorizeRequests()
-                    .antMatchers("/login").permitAll() // allow to go to in without login
+                    .antMatchers("/login", "/signup", "/").permitAll() // allow access to login page without Authentication
                     .antMatchers("/image/**", "/css/**").permitAll()
-                    .antMatchers("/listprofile").permitAll()
-                    .antMatchers("/header").permitAll()
-                    .antMatchers("/signup").permitAll()// allow to go to in without login
-                    .antMatchers("/").permitAll()// allow to go to in without login
                     .anyRequest().authenticated() // any ather page need login
                     .and()
                     .formLogin() // in login form
                     .loginPage("/login") // the GitMapping rout in controller of login
                     .loginProcessingUrl("/perform_login") // the action of login form
-                    .defaultSuccessUrl("/myprofile")
+                    .defaultSuccessUrl("/home")
                     .failureUrl("/login")
                     .and()
                     .logout()
