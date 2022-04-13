@@ -26,9 +26,13 @@
         <div class="form-content">
             <div class="login-form">
                 <div class="title">Login</div>
+
                 <form action="/login" method="POST">
                     <div class="input-boxes">
 
+                        <div th:if="${param.error}" style="color: red">
+                            Invalid username and password.
+                        </div>
                         <!-- Username -->
                         <div class="input-box">
                             <i class="fas fa-user"></i>

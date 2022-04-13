@@ -16,6 +16,7 @@
         <div class="form-content">
             <div class="signup-form">
                 <div class="title">Signup</div>
+                <p th:if="${param.taken}" style="color:red">Sorry, this username was used, please try another username</p>
                 <form action="/signup" method="POST">
                     <div class="input-boxes">
                         <!--First Name -->
@@ -57,6 +58,7 @@
                         <div class="input-box">
                             <i class="fas fa-user"></i>
                             <input name="username" type="text" placeholder="Enter your Username" required>
+
                         </div>
                         <!-- password-->
                         <div class="input-box">
