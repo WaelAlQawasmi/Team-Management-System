@@ -120,7 +120,6 @@ public String myTaskPage(Model model){
 
     @PostMapping ("/addtodo") //post
     public RedirectView addtodo (Principal p,@RequestParam String toDoListName) {
-        Logger logger =  LoggerFactory.getLogger(HomeController.class);
 
 
             Users newUser = usersRepositorie.findByusername(p.getName());
@@ -129,7 +128,9 @@ public String myTaskPage(Model model){
 
             ToDoListRepositories.save(newList);
             newList.getId();
-            return new RedirectView("/myTask");
+        return new RedirectView("/listprofile/"+newList.getId()) ;
+
+
 
     }
 /////////////////to do list profile الرجاء عدم لمس اي شيء هنا ///////////////////////
