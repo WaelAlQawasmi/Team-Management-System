@@ -23,8 +23,7 @@ public class ToDoList {
 @ManyToOne
     Users users;
 
-@OneToMany(mappedBy = "todolist")
-
+    @ManyToMany
 @JoinTable(
         name = "todolistmembers",
         joinColumns = {@JoinColumn(name = "todo_id")},
