@@ -23,12 +23,14 @@ public class ToDoList {
 @ManyToOne
     Users users;
 
-@OneToMany(mappedBy = "todolist")
-//@JoinTable(
-//        name = "todolistmembers",
-//        joinColumns = {@JoinColumn(name = "todo_id")},
-//        inverseJoinColumns = {@JoinColumn(name = "user_id")}
-//)
+
+    @ManyToMany
+@JoinTable(
+        name = "todolistmembers",
+        joinColumns = {@JoinColumn(name = "todo_id")},
+        inverseJoinColumns = {@JoinColumn(name = "user_id")}
+)
+
 List<Users> members;
 
 

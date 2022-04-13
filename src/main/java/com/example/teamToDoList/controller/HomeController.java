@@ -10,11 +10,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.websocket.server.PathParam;
 import java.security.Principal;
 
 @Controller
@@ -60,22 +62,12 @@ public class HomeController {
         return "login";
     }
 
-    @GetMapping ("/listprofile")
-    public String toDoListProfile () {
-        return "todolistprofile";
-
-    }
-
     @GetMapping("/home")
     public String getHomePage() {
         return "home";
     }
 
-        @GetMapping("/todolistname")
-        public String toDoListName () {
-            return "toDoListName";
 
-        }
         @GetMapping("/error")
         public String error () {
             return "error";
@@ -110,8 +102,16 @@ public String myTaskPage(Model model){
         }
 
 
+///////////////////////////// add to do list/////////////////////////
 
-    @PostMapping ("/addtodo")
+    @GetMapping("/todolistname") //get
+    public String toDoListName () {
+        return "toDoListName";
+
+    }
+
+
+    @PostMapping ("/addtodo") //post
     public RedirectView addtodo (Principal p,@RequestParam String toDoListName) {
 
         Users newUser=usersRepositorie.findByusername(p.getName());
@@ -121,6 +121,50 @@ public String myTaskPage(Model model){
 ToDoListRepositories.save(newList);
 newList.getId();
 return new RedirectView("/listprofile?id="+newList.getId())  ;
+
+    }
+
+/////////////////to do list profile الرجاء عدم لمس اي شيء هنا ///////////////////////
+
+    /***
+     *
+   please don't change anything here
+   الرجاء عدم تغيير اي شيء هناااااااااااااااااااااا
+     ***/
+
+
+    @GetMapping ("/listprofile/{id}")
+    public String toDoListProfile (Model model , @PathVariable Long id) {
+
+        ToDoList toDoList=ToDoListRepositories.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        model.addAttribute("id",id);
+        model.addAttribute("todomembers",toDoList.getMembers());
+
+        return "todolistprofile";
+
+    }
+
+
+
+    @PostMapping ("/listprofile/adduser/{id}") // add user  on to do list
+    public RedirectView adduser ( @PathVariable Long id, @RequestParam String username) {
+
+    Users newUser=usersRepositorie.findByusername(username);
+
+                  ToDoList toDoList=ToDoListRepositories.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+
+
+                if(toDoList.getMembers().contains(newUser)) {
+                    return new RedirectView("/listprofile/"+id+"?error=true")  ;
+                }
+        toDoList.getMembers().add(newUser);
+
+
+        ToDoListRepositories.save(toDoList);
+
+        return new RedirectView("/listprofile/"+id)  ;
 
     }
 
