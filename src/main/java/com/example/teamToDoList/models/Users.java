@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 
 import java.util.Collection;
+import java.util.List;
 
 
 @Setter
@@ -83,4 +84,10 @@ public class Users implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    @OneToMany(mappedBy="users")
+    List<ToDoList> todolists ;
+
+@ManyToOne
+    ToDoList todolist;
 }

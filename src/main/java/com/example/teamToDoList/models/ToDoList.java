@@ -3,9 +3,9 @@ package com.example.teamToDoList.models;
 import lombok.*;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -20,6 +20,17 @@ public class ToDoList {
     @NonNull
     private String name;
 
+@ManyToOne
+    Users users;
+
+@OneToMany(mappedBy = "todolist")
+
+@JoinTable(
+        name = "todolistmembers",
+        joinColumns = {@JoinColumn(name = "todo_id")},
+        inverseJoinColumns = {@JoinColumn(name = "user_id")}
+)
+List<Users> members;
 
 
 }

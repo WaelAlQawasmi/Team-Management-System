@@ -1,7 +1,8 @@
 package com.example.teamToDoList.controller;
 
 
-import com.example.teamToDoList.Repositories.UsersRepositorie;
+import com.example.teamToDoList.Repositories.*;
+import com.example.teamToDoList.models.ToDoList;
 import com.example.teamToDoList.models.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,9 +22,10 @@ public class HomeController {
     PasswordEncoder passwordEncoder;
 
     private final UsersRepositorie usersRepositorie;
-
-    public HomeController(UsersRepositorie usersRepositorie) {
+    private final  ToDoListRepositories  ToDoListRepositories;
+    public HomeController(UsersRepositorie usersRepositorie, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositories) {
         this.usersRepositorie = usersRepositorie;
+        ToDoListRepositories = toDoListRepositories;
     }
 
     @GetMapping ("/")
@@ -101,4 +103,20 @@ public class HomeController {
             return "userProfile";
 
         }
+
+
+
+    @PostMapping ("/addtodo")
+    public RedirectView addtodo (Principal p,@RequestParam String toDoListName) {
+
+        Users newUser=usersRepositorie.findByusername(p.getName());
+        ToDoList newList=new ToDoList(toDoListName);
+        newList.setUsers(newUser);
+
+ToDoListRepositories.save(newList);
+newList.getId();
+return new RedirectView("/listprofile?id="+newList.getId())  ;
+
     }
+
+}
