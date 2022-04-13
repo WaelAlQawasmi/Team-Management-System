@@ -39,10 +39,16 @@ public class HomeController {
 
     @PostMapping ("/signup")
     public RedirectView signupPost (@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String birthDay, @RequestParam String position, @RequestParam String address, @RequestParam String phone, @RequestParam String username, @RequestParam String password) {
-        String passwordEncoded = passwordEncoder.encode(password);
-        Users users = new Users(firstName, lastName, email, birthDay, position, address, phone, username, passwordEncoded);
-        usersRepositorie.save(users);
-        return new RedirectView("/login");
+
+        if (usersRepositorie.findByusername(username) == null) {
+            String passwordEncoded = passwordEncoder.encode(password);
+            Users users = new Users(firstName, lastName, email, birthDay, position, address, phone, username, passwordEncoded);
+            usersRepositorie.save(users);
+            return new RedirectView("/login");
+        }else
+        {
+            return new RedirectView("/signup?taken=true");
+        }
     }
 
     @GetMapping("/login")
