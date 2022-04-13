@@ -8,14 +8,8 @@
     <title>Title</title>
 </head>
 <body>
-<header class="header">
-    <a href="/" class="logo">
-        <img src="assets/images/logo.png" alt="logo">
-    </a>
-    <a href="/todolistname">create new to do list</a>
-    <a th:href="@{/profile}">username</a>
+<div th:insert="~{/header :: my-fragment2}"></div>
 
-</header>
 
 <section class="menu" id="menu">
     <h1 class="heading"> <span>to do lists</span></h1>
