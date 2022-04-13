@@ -18,12 +18,12 @@
 </header>
 
 <section class="menu" id="menu">
-    <h1 class="heading"> <span>tasks</span></h1>
+    <h1 class="heading"> <span>to do lists</span></h1>
     <div class="grid">
     <div class="box-container"  th:each="todolist : ${todolist}">
         <div class="box">
             <h3 th:text="${todolist.name}"></h3>
-            <a href="/listprofile" class="btn">enter</a>
+            <a th:href="@{'/listprofile/' + ${todolist.id}}" class="btn">enter</a>
         </div>
         </div>
 
