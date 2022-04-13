@@ -4,6 +4,8 @@ package com.example.teamToDoList.controller;
 import com.example.teamToDoList.Repositories.*;
 import com.example.teamToDoList.models.ToDoList;
 import com.example.teamToDoList.models.Users;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.websocket.server.PathParam;
 import java.security.Principal;
 
 @Controller
@@ -119,17 +120,18 @@ public String myTaskPage(Model model){
 
     @PostMapping ("/addtodo") //post
     public RedirectView addtodo (Principal p,@RequestParam String toDoListName) {
+        Logger logger =  LoggerFactory.getLogger(HomeController.class);
 
-        Users newUser=usersRepositorie.findByusername(p.getName());
-        ToDoList newList=new ToDoList(toDoListName);
-        newList.setUsers(newUser);
 
-ToDoListRepositories.save(newList);
-newList.getId();
-return new RedirectView("/myTask")  ;
+            Users newUser = usersRepositorie.findByusername(p.getName());
+            ToDoList newList = new ToDoList(toDoListName);
+            newList.setUsers(newUser);
+
+            ToDoListRepositories.save(newList);
+            newList.getId();
+            return new RedirectView("/myTask");
 
     }
-
 /////////////////to do list profile الرجاء عدم لمس اي شيء هنا ///////////////////////
 
     /***
