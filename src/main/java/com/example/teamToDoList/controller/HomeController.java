@@ -4,8 +4,9 @@ package com.example.teamToDoList.controller;
 import com.example.teamToDoList.Repositories.*;
 import com.example.teamToDoList.models.ToDoList;
 import com.example.teamToDoList.models.Users;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.websocket.server.PathParam;
@@ -27,7 +27,7 @@ public class HomeController {
 
     private final UsersRepositorie usersRepositorie;
     private final  ToDoListRepositories  ToDoListRepositories;
-    public HomeController(UsersRepositorie usersRepositorie, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositories) {
+    public HomeController(UsersRepositorie usersRepositorie, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositories, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositoriesl) {
         this.usersRepositorie = usersRepositorie;
         ToDoListRepositories = toDoListRepositories;
     }
@@ -89,10 +89,16 @@ public class HomeController {
             return "myTask";
 
         }
+
 @GetMapping("/myTask")
 public String myTaskPage(Model model){
-    return "myTask";
+    Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+    Users user=usersRepositorie.findByusername(authentication.getName());
+        model.addAttribute("todolist",user.getTodolists());
+        return "myTask";
 }
+
+
         @GetMapping("/profile")
         public String userProfile (Principal p, Model model) {
         Users newUser=usersRepositorie.findByusername(p.getName());
@@ -120,7 +126,7 @@ public String myTaskPage(Model model){
 
 ToDoListRepositories.save(newList);
 newList.getId();
-return new RedirectView("/listprofile?id="+newList.getId())  ;
+return new RedirectView("/myTask")  ;
 
     }
 
