@@ -44,7 +44,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
                     .and().rememberMe().and().formLogin()
                     .loginPage("/login").permitAll() // the GitMapping rout in controller of login
                     .loginProcessingUrl("/login") // the action of login form
-                    .defaultSuccessUrl("/profile",true)
+                    .defaultSuccessUrl("/myTask",true)
                     .failureUrl("/login?error=true")
                     .and()
                     .logout()

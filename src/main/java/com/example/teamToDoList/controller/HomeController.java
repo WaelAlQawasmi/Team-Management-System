@@ -4,6 +4,7 @@ package com.example.teamToDoList.controller;
 import com.example.teamToDoList.Repositories.*;
 import com.example.teamToDoList.models.ToDoList;
 import com.example.teamToDoList.models.Users;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.websocket.server.PathParam;
@@ -38,7 +40,7 @@ public class HomeController {
 
     @GetMapping("/signup")
     public String signupPage () {
-        return "signup";
+       return "signup";
     }
 
     @PostMapping ("/signup")
@@ -87,7 +89,10 @@ public class HomeController {
             return "myTask";
 
         }
-
+@GetMapping("/myTask")
+public String myTaskPage(Model model){
+    return "myTask";
+}
         @GetMapping("/profile")
         public String userProfile (Principal p, Model model) {
         Users newUser=usersRepositorie.findByusername(p.getName());
