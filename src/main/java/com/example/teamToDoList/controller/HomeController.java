@@ -33,6 +33,16 @@ public class HomeController {
         ToDoListRepositories = toDoListRepositories;
     }
 
+
+
+    @GetMapping ("/dashboard")
+    public String Dashboard (Model model) {
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        Users user=usersRepositorie.findByusername(authentication.getName());
+        model.addAttribute("todolist",user.getTodolists());
+        return "myTask";
+    }
+
     @GetMapping ("/")
     public String homePage () {
         return "home";
@@ -65,7 +75,7 @@ public class HomeController {
 
     @GetMapping("/home")
     public String getHomePage() {
-        return "home";
+        return "todolistprofile";
     }
 
 
@@ -79,6 +89,12 @@ public class HomeController {
             return "header";
 
         }
+    @GetMapping("/unauthheader")
+    public String unAuthHeader () {
+        return "unauthheader";
+
+    }
+
 
 
         @GetMapping("/forgot")
@@ -158,8 +174,7 @@ public String myTaskPage(Model model){
 
     @PostMapping ("/listprofile/adduser/{id}") // add user  on to do list
     public RedirectView adduser ( @PathVariable Long id, @RequestParam String username) {
-
-    Users newUser=usersRepositorie.findByusername(username);
+        Users newUser=usersRepositorie.findByusername(username);
 
                   ToDoList toDoList=ToDoListRepositories.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
@@ -173,8 +188,8 @@ public String myTaskPage(Model model){
 
         ToDoListRepositories.save(toDoList);
 
-        return new RedirectView("/listprofile/"+id)  ;
+        return new RedirectView("/listprofile/"+id)  ;}
 
-    }
+
 
 }
