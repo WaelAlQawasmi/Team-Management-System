@@ -20,6 +20,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Users implements UserDetails {
 
+    @Column(name = "reset_password_token")
+    private String resetPasswordToken;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
