@@ -1,15 +1,19 @@
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<header class="header" th:fragment="my-fragment2">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+    <header class="header" th:fragment="my-fragment2">
 
-
-        <a href="/" class="logo">
-            <img src="assets/images/logo.png" alt="logo">
-        </a>
-        <a href="/todolistname">create new to do list</a>
-        <a th:href="@{/profile}">username</a>
-
+            <link th:href="@{/css/header.css}" rel="stylesheet">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+            <a href="/home" class="logo">
+                <img th:src="@{/image/logo.png}" alt="">
+            </a>
+            <nav class="navbar">
+                <a href="/dashboard">Dashboard</a>
+                <a href="/myTask">My Task</a>
+                <a href="/todolistname">My Todo List</a>
+                <a href="/profile">My Profile</a>
+                <form class="logout-form" action="/logout" method="post" style="display: inline-block;">
+                    <button type="submit" style="background-color: #645c50;"> <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+                </form>
+            </nav>
     </header>
-
-
-
 </html>
