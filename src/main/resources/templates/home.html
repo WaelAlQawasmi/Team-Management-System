@@ -9,16 +9,7 @@
 </head>
 <body>
 
-<header class="header">
-    <a href="#" class="logo">
-        <img src="assets/images/logo.png" alt="logo">
-    </a>
-    <nav class="navbar">
-        <a href="#about">about</a>
-        <a th:href="@{/login}">login</a>
-        <a th:href="@{/signup}">signUp</a>
-    </nav>
-</header>
+<div th:insert="~{/unauthheader :: my-fragment3}"></div>
 
 <section class="home" id="home">
     <div class="content">
@@ -32,10 +23,10 @@
 
 <!-- about section starts -->
 <section class="about" id="about">
-    <h1 class="heading"> <span> about </span> us </h1>
+    <h1 class="heading"> <span> about us</span>  </h1>
     <div class="row">
         <div class="image">
-            <img src="/image/about-us.webp" alt="about-us">
+            <img src="/image/about.png" alt="about-us">
         </div>
         <div class="content">
             <h3>Group1 of java course in LTUC</h3>
@@ -49,7 +40,7 @@
 
 <!-- footer -->
 
-<section class="footer">
+<section class="footer" id="contact">
     <div class="share">
         <a href="#" class="fab fa-facebook-f"></a>
         <a href="#" class="fab fa-twitter"></a>
@@ -66,52 +57,7 @@
     </div>
 
     <div class="credit">&copy;created by <span> Group1 </span> | all rights reserved</div>
-
-<!--<section class="menu" id="menu">-->
-<!--    <h1 class="heading"> our <span>menu</span></h1>-->
-<!--    <div class="box-container">-->
-<!--        <div class="box">-->
-<!--            <img src="assets/images//menu-1.png" alt="">-->
-<!--            <h3>tasty and healty</h3>-->
-<!--            <div class="price">$15.99 <span>20.99</span></div>-->
-<!--            <a href="#" class="btn">add to cart</a>-->
-<!--        </div>-->
-
-<!--        <div class="box">-->
-<!--            <img src="assets/images//menu-2.png" alt="">-->
-<!--            <h3>tasty and healty</h3>-->
-<!--            <div class="price">$15.99 <span>20.99</span></div>-->
-<!--            <a href="#" class="btn">add to cart</a>-->
-<!--        </div>-->
-
-<!--        <div class="box">-->
-<!--            <img src="assets/images//menu-3.png" alt="">-->
-<!--            <h3>tasty and healty</h3>-->
-<!--            <div class="price">$15.99 <span>20.99</span></div>-->
-<!--            <a href="#" class="btn">add to cart</a>-->
-<!--        </div>-->
-
-<!--        <div class="box">-->
-<!--            <img src="assets/images//menu-4.png" alt="">-->
-<!--            <h3>tasty and healty</h3>-->
-<!--            <div class="price">$15.99 <span>20.99</span></div>-->
-<!--            <a href="#" class="btn">add to cart</a>-->
-<!--        </div>-->
-
-<!--        <div class="box">-->
-<!--            <img src="assets/images//menu-5.png" alt="">-->
-<!--            <h3>tasty and healty</h3>-->
-<!--            <div class="price">$15.99 <span>20.99</span></div>-->
-<!--            <a href="#" class="btn">add to cart</a>-->
-<!--        </div>-->
-
-<!--        <div class="box">-->
-<!--            <img src="assets/images//menu-6.png" alt="">-->
-<!--            <h3>tasty and healty</h3>-->
-<!--            <div class="price">$15.99 <span>20.99</span></div>-->
-<!--            <a href="#" class="btn">add to cart</a>-->
-<!--        </div>-->
-<!--    </div>-->
+    -
 
 </section>
 </body>
