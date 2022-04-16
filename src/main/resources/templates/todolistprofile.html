@@ -27,7 +27,7 @@
 <div class="container-lg" >
     <div class="btn-group btn-group-lg fixed-bottom" role="group" aria-label="...">
         <button type="button" class="btn btn-primary btn-light"  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add user</button>
-        <button type="button" class="btn btn-primary  btn-light" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Add task</button>
+        <button type="button" class="btn btn-primary  btn-light" data-toggle="modal" data-target="#addtask" data-whatever="@fat">Add task</button>
         <button type="button" class="btn btn-primary  btn-light" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">add post</button>
 
     </div>
@@ -47,17 +47,19 @@
                     </h5>
                 </div>
 
-                <div class="card-body pt-2 pb-1">
+
+                <div  th:each="item:${items}">
+                <div class="card-body pt-2 pb-1" >
                     <div role="button" class="d-flex flex-wrap align-items-center my-2 bgc-secondary-l4 bgc-h-secondary-l3 radius-1 p-25 d-style">
                         <span class="mr-25 w-4 h-4 overflow-hidden text-center border-1 brc-secondary-m2 radius-round shadow-sm d-zoom-2">
                             <img alt="Alexa's avatar" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="h-4 w-4" />
                         </span>
 
-                        <span class="text-default-d3 text-90 text-600">
+                        <span class="text-default-d3 text-90 text-600"  th:text="${item.getUsersmember().getUsername()}" >
                             Alexa
                         </span>
 
-                        <span class="ml-auto text-dark-l2 text-nowrap">
+                        <span class="ml-auto text-dark-l2 text-nowrap"    style="    margin-left: 10px;"   th:text="${item.getName()}" >
                             1,250
                             <span class="text-80">
                                 USD
@@ -69,6 +71,10 @@
                         </span>
                     </div>
                  </div>
+
+                </div>
+
+
             </div>
         </div>
 
@@ -165,20 +171,27 @@
 
 
           <script th:if="${param.error}" > alert("the user already added")</script>
+        <script th:if="${param.nooneerror}" > alert("no one have this username !")</script>
+        <script th:if="${param.errorone}" > alert("the user didn't added to the list")</script>
+        <script th:if="${param.adddone}" > alert("done!")</script>
+        <button type="button" class="bt btn-outline-info btn-sm" data-toggle="modal" data-target="#exampleModalLong">
+            info
+        </button>
 
-
-        <!--  ///////////////////////////// Modal /////////////////////////////  -->
+        <!--  /////////////////////////////   Modales  /////////////////////////////  -->
+<!--        add user module-->
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                        <h5 class="modal-title" id="exampleModalLabel2"> add New user</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form th:action="${'adduser/'+id}" method="post">
                             <div class="mb-3">
+
                                 <label for="recipient-name" class="col-form-label">username:</label>
                                 <input type="text" class="form-control" style="text-transform: none;" name="username" id="recipient-name">
                             </div>
@@ -197,14 +210,42 @@
 
 </div>
 
+        <!--        add  task-->
+
+
+        <div class="modal fade" id="addtask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New task</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form th:action="${'addtask/'+id}" method="post">
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">task :</label>
+                                <textarea  class="form-control" style="text-transform: none;" name="task" id="recipient-name"> </textarea>
+
+                                <label for="recipient-name" class="col-form-label">username:</label>
+                                <input type="text" class="form-control" style="text-transform: none;" name="username" id="recipient-name">
+                            </div>
 
 
 
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary btn-light">Add user</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
 
-        <button type="button" class="bt btn-outline-info btn-sm" data-toggle="modal" data-target="#exampleModalLong">
-          info
-        </button>
+        </div>
+
+
+
         <!--  info Modal -->
         <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 
@@ -217,9 +258,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <h3>users</h3>
                         <ul th:each="user:${todomembers}">
                             <li th:text="${user.getUsername()}"></li>
                         </ul>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

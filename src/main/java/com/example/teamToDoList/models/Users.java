@@ -16,6 +16,7 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
+@Table(name = "users")
 @RequiredArgsConstructor
 @NoArgsConstructor
 public class Users implements UserDetails {
@@ -92,4 +93,7 @@ public class Users implements UserDetails {
 
     @ManyToMany(mappedBy = "members", fetch = FetchType.EAGER)
     public List<ToDoList> users;
+
+    @OneToMany(mappedBy="usersmember")
+    List<ToDoListItems> toDoListItems ;
 }
