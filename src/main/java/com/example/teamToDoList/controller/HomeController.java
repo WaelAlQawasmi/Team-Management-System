@@ -25,19 +25,22 @@ public class HomeController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    private final  ToDoListItemsRepositories  ToDoListItemsRepositories;
-    private final UsersRepositorie usersRepositorie;
-    private final  ToDoListRepositories  ToDoListRepositories;
+    private  ToDoListItemsRepositories  ToDoListItemsRepositories;
+    private static UsersRepositorie usersRepositorie ;
+    private  ToDoListRepositories  ToDoListRepositories;
     public HomeController(UsersRepositorie usersRepositorie, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositories, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositoriesl, com.example.teamToDoList.Repositories.ToDoListItemsRepositories toDoListItemsRepositories) {
         this.usersRepositorie = usersRepositorie;
         ToDoListRepositories = toDoListRepositories;
         ToDoListItemsRepositories = toDoListItemsRepositories;
     }
 
+    public HomeController() {
+
+    }
 
 
     @GetMapping ("/dashboard")
-    public String Dashboard (Model model) {
+    public  String Dashboard(Model model) {
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
         Users user=usersRepositorie.findByusername(authentication.getName());
         model.addAttribute("todolist",user.getTodolists());
@@ -45,18 +48,18 @@ public class HomeController {
     }
 
     @GetMapping ("/")
-    public String homePage () {
+    public static String homePage() {
         return "home";
     }
 
 
     @GetMapping("/signup")
-    public String signupPage () {
+    public static String signupPage() {
        return "signup";
     }
 
     @PostMapping ("/signup")
-    public RedirectView signupPost (@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String birthDay, @RequestParam String position, @RequestParam String address, @RequestParam String phone, @RequestParam String username, @RequestParam String password) {
+    public  RedirectView signupPost(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String birthDay, @RequestParam String position, @RequestParam String address, @RequestParam String phone, @RequestParam String username, @RequestParam String password) {
 
         if (usersRepositorie.findByusername(username) == null) {
             String passwordEncoded = passwordEncoder.encode(password);
@@ -70,7 +73,7 @@ public class HomeController {
     }
 
     @GetMapping("/login")
-    public String loginPage () {
+    public static String loginPage() {
         return "login";
     }
 
@@ -86,12 +89,12 @@ public class HomeController {
 
         }
         @GetMapping("/header")
-        public String header () {
+        public static String header() {
             return "header";
 
         }
     @GetMapping("/unauthheader")
-    public String unAuthHeader () {
+    public static String unAuthHeader() {
         return "unauthheader";
 
     }
@@ -99,7 +102,7 @@ public class HomeController {
 
 
         @GetMapping("/forgot")
-        public String forgotPage () {
+        public static String forgotPage() {
             return "forgot";
         }
         @GetMapping("/task")
@@ -109,7 +112,7 @@ public class HomeController {
         }
 
 @GetMapping("/myTask")
-public String myTaskPage(Model model){
+public static String myTaskPage(Model model){
     Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
     Users user=usersRepositorie.findByusername(authentication.getName());
         model.addAttribute("todolist",user.getTodolists());
@@ -118,7 +121,7 @@ public String myTaskPage(Model model){
 
 
         @GetMapping("/profile")
-        public String userProfile (Principal p, Model model) {
+        public static String userProfile(Principal p, Model model) {
         Users newUser=usersRepositorie.findByusername(p.getName());
         model.addAttribute("userInfo",newUser);
             return "userProfile";
@@ -129,7 +132,7 @@ public String myTaskPage(Model model){
 ///////////////////////////// add to do list/////////////////////////
 
     @GetMapping("/todolistname") //get
-    public String toDoListName () {
+    public static String toDoListName() {
         return "toDoListName";
 
     }
