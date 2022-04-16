@@ -26,17 +26,15 @@ public class HomeController {
     PasswordEncoder passwordEncoder;
 
     private  ToDoListItemsRepositories  ToDoListItemsRepositories;
-    private static UsersRepositorie usersRepositorie ;
-    private  ToDoListRepositories  ToDoListRepositories;
+    private  UsersRepositorie usersRepositorie ;
+    private ToDoListRepositories  ToDoListRepositories;
     public HomeController(UsersRepositorie usersRepositorie, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositories, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositoriesl, com.example.teamToDoList.Repositories.ToDoListItemsRepositories toDoListItemsRepositories) {
         this.usersRepositorie = usersRepositorie;
         ToDoListRepositories = toDoListRepositories;
         ToDoListItemsRepositories = toDoListItemsRepositories;
     }
 
-    public HomeController() {
 
-    }
 
 
     @GetMapping ("/dashboard")
@@ -112,7 +110,7 @@ public class HomeController {
         }
 
 @GetMapping("/myTask")
-public static String myTaskPage(Model model){
+public String myTaskPage(Model model){
     Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
     Users user=usersRepositorie.findByusername(authentication.getName());
         model.addAttribute("todolist",user.getTodolists());
@@ -121,7 +119,7 @@ public static String myTaskPage(Model model){
 
 
         @GetMapping("/profile")
-        public static String userProfile(Principal p, Model model) {
+        public  String userProfile(Principal p, Model model) {
         Users newUser=usersRepositorie.findByusername(p.getName());
         model.addAttribute("userInfo",newUser);
             return "userProfile";
