@@ -113,7 +113,7 @@ public class HomeController {
 public String myTaskPage(Model model){
     Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
     Users user=usersRepositorie.findByusername(authentication.getName());
-        model.addAttribute("todolist",user.getTodolists());
+        model.addAttribute("todolist",user.getTasks());
         return "myTask";
 }
 
