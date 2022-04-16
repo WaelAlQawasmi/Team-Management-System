@@ -3,9 +3,8 @@ package com.example.teamToDoList.controller;
 
 import com.example.teamToDoList.Repositories.*;
 import com.example.teamToDoList.models.ToDoList;
+import com.example.teamToDoList.models.ToDoListItems;
 import com.example.teamToDoList.models.Users;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,11 +25,13 @@ public class HomeController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    private final  ToDoListItemsRepositories  ToDoListItemsRepositories;
     private final UsersRepositorie usersRepositorie;
     private final  ToDoListRepositories  ToDoListRepositories;
-    public HomeController(UsersRepositorie usersRepositorie, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositories, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositoriesl) {
+    public HomeController(UsersRepositorie usersRepositorie, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositories, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositoriesl, com.example.teamToDoList.Repositories.ToDoListItemsRepositories toDoListItemsRepositories) {
         this.usersRepositorie = usersRepositorie;
         ToDoListRepositories = toDoListRepositories;
+        ToDoListItemsRepositories = toDoListItemsRepositories;
     }
 
 
@@ -166,6 +167,8 @@ public String myTaskPage(Model model){
         model.addAttribute("id",id);
         model.addAttribute("todomembers",toDoList.getMembers());
 
+        model.addAttribute("items",ToDoListItemsRepositories.findBytodolist_id(id));
+
         return "todolistprofile";
 
     }
@@ -174,7 +177,12 @@ public String myTaskPage(Model model){
 
     @PostMapping ("/listprofile/adduser/{id}") // add user  on to do list
     public RedirectView adduser ( @PathVariable Long id, @RequestParam String username) {
+
         Users newUser=usersRepositorie.findByusername(username);
+        if(newUser==null)
+        {
+            return new RedirectView("/listprofile/"+id+"?nooneerror=true")  ;
+        }
 
                   ToDoList toDoList=ToDoListRepositories.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
@@ -188,7 +196,35 @@ public String myTaskPage(Model model){
 
         ToDoListRepositories.save(toDoList);
 
-        return new RedirectView("/listprofile/"+id)  ;}
+        return new RedirectView("/listprofile/"+id+"?adddone=one")  ;}
+
+
+
+
+
+
+    @PostMapping ("/listprofile/addtask/{listId}") // add task  on to do list
+    public RedirectView addtask ( Model model,@PathVariable Long listId, @RequestParam String username , @RequestParam String task) {
+        Users member=usersRepositorie.findByusername(username);
+
+        ToDoList toDoList=ToDoListRepositories.findById(listId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + listId));
+
+
+        if(toDoList.getMembers().contains(member)) {
+            ToDoListItems newItem= new ToDoListItems(task,"0");
+            newItem.setTodolist(toDoList);
+            newItem.setUsersmember(member);
+            ToDoListItemsRepositories.save(newItem);
+            return new RedirectView("/listprofile/"+listId+"?adddone=one")  ;
+
+
+
+
+        }
+
+        return new RedirectView("/listprofile/"+listId+"?errorone=1")  ;
+       }
 
 
 

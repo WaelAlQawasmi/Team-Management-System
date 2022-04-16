@@ -34,4 +34,8 @@ public class ToDoList {
 List<Users> members;
 
 
+    @OneToMany(mappedBy = "todolist")
+    List<ToDoListItems>toDoListItems;
+
+
 }
