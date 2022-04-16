@@ -92,7 +92,7 @@ public class Users implements UserDetails {
     List<ToDoList> todolists ;
 
     @ManyToMany(mappedBy = "members", fetch = FetchType.EAGER)
-    public List<ToDoList> users;
+    public List<ToDoList> tasks;
 
     @OneToMany(mappedBy="usersmember")
     List<ToDoListItems> toDoListItems ;
