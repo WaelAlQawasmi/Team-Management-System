@@ -204,14 +204,14 @@ public String myTaskPage(Model model){
 
 
     @PostMapping ("/listprofile/addtask/{listId}") // add task  on to do list
-    public RedirectView addtask ( Model model,@PathVariable Long listId, @RequestParam String username , @RequestParam String task) {
+    public RedirectView addtask (Principal p, Model model,@PathVariable Long listId, @RequestParam String username , @RequestParam String task) {
         Users member=usersRepositorie.findByusername(username);
 
         ToDoList toDoList=ToDoListRepositories.findById(listId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + listId));
+        Users admin = usersRepositorie.findByusername(p.getName());
 
-
-        if(toDoList.getMembers().contains(member)) {
+        if(toDoList.getMembers().contains(member)||toDoList.getUsers().equals(admin)) {
             ToDoListItems newItem= new ToDoListItems(task,"0");
             newItem.setTodolist(toDoList);
             newItem.setUsersmember(member);
