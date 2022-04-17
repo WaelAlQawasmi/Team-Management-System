@@ -48,7 +48,7 @@
                 </div>
 
 
-                <div  th:each="item:${items}">
+                <div  th:each="item:${todoitems}">
                 <div class="card-body pt-2 pb-1" >
                     <a th:href="@{'/profile/' + ${item.getUsersmember().getId()}}">
                     <div role="button" class="d-flex flex-wrap align-items-center my-2 bgc-secondary-l4 bgc-h-secondary-l3 radius-1 p-25 d-style">
@@ -95,13 +95,16 @@
                     </h5>
                 </div>
 
+                <div  th:each="item:${doingitems}">
+
+
                 <div class="card-body pt-2 pb-1">
                     <div role="button" class="d-flex flex-wrap align-items-center my-2 bgc-secondary-l4 bgc-h-secondary-l3 radius-1 p-25 d-style">
 
 <div>
 
-                         <span class="mr-25 w-4 h-4 overflow-hidden text-center border-1 brc-secondary-m2 radius-round shadow-sm d-zoom-2">
-                             Alexa
+                         <span class="mr-25 w-4 h-4 overflow-hidden text-center border-1 brc-secondary-m2 radius-round shadow-sm d-zoom-2"  th:text="${item.getUsersmember().getUsername()}">
+
                         </span>
 </div>
 
@@ -109,9 +112,11 @@
 
                            <div class="input-group mb-1">
   <div class="input-group-text">
-    <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+      <form  th:action="'/taskstatus/done/'+${item.getId()}+'?todoid='+${item.getTodolist().getId()}" method="post" >
+    <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input" onclick="myFunction()"  onchange="this.form.submit()" >
+      </form>
   </div>
-                               <textarea type="text" class="form-control"  value="" aria-label="Text input with checkbox" disabled> the task body</textarea>
+                               <textarea type="text" class="form-control"  value="" aria-label="Text input with checkbox" disabled  th:text="${item.getName()}"> the task body</textarea>
 </div>
 
 
@@ -120,6 +125,9 @@
 
                     </div>
                 </div>
+
+                </div>
+
             </div>
         </div>
 
@@ -140,27 +148,32 @@
                     </h5>
                 </div>
 
-                <div class="card-body pt-2 pb-1">
-                    <div role="button" class="d-flex flex-wrap align-items-center my-2 bgc-secondary-l4 bgc-h-secondary-l3 radius-1 p-25 d-style">
+                <div  th:each="item:${doneitems}">
+                    <div class="card-body pt-2 pb-1" >
+                        <a th:href="@{'/profile/' + ${item.getUsersmember().getId()}}">
+                            <div role="button" class="d-flex flex-wrap align-items-center my-2 bgc-secondary-l4 bgc-h-secondary-l3 radius-1 p-25 d-style">
                         <span class="mr-25 w-4 h-4 overflow-hidden text-center border-1 brc-secondary-m2 radius-round shadow-sm d-zoom-2">
                             <img alt="Alexa's avatar" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="h-4 w-4" />
                         </span>
 
-                        <span class="text-default-d3 text-90 text-600">
+                                <span class="text-default-d3 text-90 text-600"  th:text="${item.getUsersmember().getUsername()}" >
                             Alexa
                         </span>
 
-                        <span class="ml-auto text-dark-l2 text-nowrap">
+                                <span class="ml-auto text-dark-l2 text-nowrap"    style="    margin-left: 10px;"   th:text="${item.getName()}" >
                             1,250
                             <span class="text-80">
                                 USD
                             </span>
                         </span>
 
-                        <span class="ml-2">
+                                <span class="ml-2">
                             <i class="fa fa-arrow-up text-green-m1 text-95"></i>
                         </span>
+                            </div>
+                        </a>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -225,9 +238,10 @@
                     <div class="modal-body">
                         <form th:action="${'addtask/'+id}" method="post">
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">task :</label>
-                                <textarea  class="form-control" style="text-transform: none;" name="task" id="recipient-name"> </textarea>
-
+                                <label for="recipient-name" class="col-form-label">Task Name :</label>
+                                <input  class="form-control" style="text-transform: none;" name="task" id="recipient-name"> </input>
+                                <label for="recipient-name" class="col-form-label">Task Description :</label>
+                                <textarea  class="form-control" style="text-transform: none;" name="description" id="recipient-name"> </textarea>
                                 <label for="recipient-name" class="col-form-label">username:</label>
                                 <input type="text" class="form-control" style="text-transform: none;" name="username" id="recipient-name">
                             </div>
