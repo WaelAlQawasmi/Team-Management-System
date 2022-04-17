@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.websocket.server.PathParam;
 import java.security.Principal;
 import java.util.List;
 
@@ -174,8 +175,10 @@ public String myTaskPage(Model model){
         model.addAttribute("id",id);
         model.addAttribute("todomembers",toDoList.getMembers());
 
-        model.addAttribute("items",ToDoListItemsRepositories.findBytodolist_id(id));
+        model.addAttribute("todoitems",ToDoListItemsRepositories.findToDoItems("0",id));
 
+        model.addAttribute("doingitems",ToDoListItemsRepositories.findToDoItems("accept",id));
+        model.addAttribute("doneitems",ToDoListItemsRepositories.findToDoItems("done",id));
         return "todolistprofile";
 
     }
@@ -255,19 +258,43 @@ public String myTaskPage(Model model){
     }
 
 
-    @GetMapping ("/mytasks")
-    public String notfications (Principal p,Model model ) {
-        Users admin = usersRepositorie.findByusername(p.getName());
-      List<ToDoListItems> items= ToDoListItemsRepositories.findMytask("0",admin.getId());
-
+    @GetMapping ("/notifications")
+    public String notifications (Principal p,Model model ) {
+        Users user = usersRepositorie.findByusername(p.getName());
+      List<ToDoListItems> items= ToDoListItemsRepositories.findMytask("0",user.getId());
+        model.addAttribute("number",items.size());
         model.addAttribute("todomembers",items);
-
-
-
         return "notfecation";
 
     }
 
+
+@PostMapping("taskstatus/{status}/{taskid}")
+public RedirectView requistAndAprove (Principal p, @PathVariable String status, @PathVariable Long taskid, @PathParam("todoid") Long todoid)  {
+    Users user = usersRepositorie.findByusername(p.getName());
+    ToDoListItems task=ToDoListItemsRepositories.findById(taskid)
+            .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + taskid));
+
+    if(task.getUsersmember().getId()==user.getId()){
+
+        if(status.equals("accept")){
+            task.setStatus("accept");
+            ToDoListItemsRepositories.save(task);
+                    }
+
+        if(status.equals("reject")){
+            task.setStatus("reject");
+            ToDoListItemsRepositories.save(task);
+               }
+        if(status.equals("done")){
+            task.setStatus("done");
+            ToDoListItemsRepositories.save(task);
+            return new RedirectView("/listprofile/"+todoid)  ;
+        }
+    }
+
+    return new RedirectView("/notifications")  ;
+    }
 
 
 }
