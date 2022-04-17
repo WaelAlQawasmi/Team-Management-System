@@ -50,6 +50,7 @@
 
                 <div  th:each="item:${items}">
                 <div class="card-body pt-2 pb-1" >
+                    <a th:href="@{'/profile/' + ${item.getUsersmember().getId()}}">
                     <div role="button" class="d-flex flex-wrap align-items-center my-2 bgc-secondary-l4 bgc-h-secondary-l3 radius-1 p-25 d-style">
                         <span class="mr-25 w-4 h-4 overflow-hidden text-center border-1 brc-secondary-m2 radius-round shadow-sm d-zoom-2">
                             <img alt="Alexa's avatar" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="h-4 w-4" />
@@ -70,6 +71,7 @@
                             <i class="fa fa-arrow-up text-green-m1 text-95"></i>
                         </span>
                     </div>
+                    </a>
                  </div>
 
                 </div>

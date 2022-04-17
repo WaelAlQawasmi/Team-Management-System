@@ -9,9 +9,11 @@ import org.springframework.stereotype.Repository;
 public interface UsersRepositorie extends JpaRepository<Users,Long> {
 
     Users findByusername(String username);
-
+    @Query("SELECT c FROM Users c WHERE c.id = ?1")
+    public Users finduserById(Long id);
+    public Users findByResetPasswordToken(String token);
     @Query("SELECT c FROM Users c WHERE c.email = ?1")
     public Users findByEmail(String email);
 
-    public Users findByResetPasswordToken(String token);
+
 }
