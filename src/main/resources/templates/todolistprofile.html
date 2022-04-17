@@ -171,7 +171,7 @@
 
 
 
-
+        <script th:if="${param.eradmin}" > alert("you are not admin")</script>
           <script th:if="${param.error}" > alert("the user already added")</script>
         <script th:if="${param.nooneerror}" > alert("no one have this username !")</script>
         <script th:if="${param.errorone}" > alert("the user didn't added to the list")</script>
