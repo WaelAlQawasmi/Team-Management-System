@@ -19,6 +19,10 @@
         <div class="box">
             <h3 th:text="${todolist.name}"></h3>
             <a th:href="@{'/listprofile/' + ${todolist.id}}" class="btn">enter</a>
+            <form method="post" th:action="@{'/dashboard'}" th:if=${del}>
+                <input type="hidden" name="id" th:value="${todolist.id}">
+                <button type="submit" class="btn" name="delete">delete</button>
+            </form>
         </div>
         </div>
         <form action="/todolistname" method="get">

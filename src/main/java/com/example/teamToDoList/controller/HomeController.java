@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class HomeController {
@@ -40,6 +42,7 @@ public class HomeController {
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
         Users user=usersRepositorie.findByusername(authentication.getName());
         model.addAttribute("todolist",user.getTodolists());
+        model.addAttribute("del",true);
         return "myTask";
     }
 
@@ -112,6 +115,7 @@ public String myTaskPage(Model model){
     Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
     Users user=usersRepositorie.findByusername(authentication.getName());
         model.addAttribute("todolist",user.getTasks());
+        model.addAttribute("del",false);
         return "myTask";
 }
 
@@ -167,7 +171,7 @@ public String myTaskPage(Model model){
 
 
     @GetMapping ("/listprofile/{id}")
-    public String toDoListProfile (Model model , @PathVariable Long id) {
+    public String toDoListProfile (Model model , @PathVariable Long id,Principal p) {
 
         ToDoList toDoList=ToDoListRepositories.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
@@ -175,6 +179,14 @@ public String myTaskPage(Model model){
         model.addAttribute("todomembers",toDoList.getMembers());
 
         model.addAttribute("items",ToDoListItemsRepositories.findBytodolist_id(id));
+
+        if (id!=usersRepositorie.findByusername(p.getName()).getId())
+        {
+            model.addAttribute("flag",false);
+        }
+        else {
+            model.addAttribute("flag",true);
+        }
 
         return "todolistprofile";
 
@@ -251,6 +263,14 @@ System.out.println(toDoList.getUsers().getId()+".....................99");
 
         return "notfecation";
 
+    }
+
+    @PostMapping (value = "/dashboard", params = "delete")
+    public RedirectView deleteToDo(Long id){
+        Optional<ToDoList> toDoDelete=ToDoListRepositories.findById(id);
+        ToDoListItemsRepositories.deleteAll(ToDoListItemsRepositories.findBytodolist_id(id));
+        ToDoListRepositories.deleteById(id);
+        return new RedirectView("/dashboard");
     }
 
 
