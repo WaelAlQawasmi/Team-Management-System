@@ -225,9 +225,10 @@
                     <div class="modal-body">
                         <form th:action="${'addtask/'+id}" method="post">
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">task :</label>
-                                <textarea  class="form-control" style="text-transform: none;" name="task" id="recipient-name"> </textarea>
-
+                                <label for="recipient-name" class="col-form-label">Task Name :</label>
+                                <input  class="form-control" style="text-transform: none;" name="task" id="recipient-name"> </input>
+                                <label for="recipient-name" class="col-form-label">Task Description :</label>
+                                <textarea  class="form-control" style="text-transform: none;" name="description" id="recipient-name"> </textarea>
                                 <label for="recipient-name" class="col-form-label">username:</label>
                                 <input type="text" class="form-control" style="text-transform: none;" name="username" id="recipient-name">
                             </div>

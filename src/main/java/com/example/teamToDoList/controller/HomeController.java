@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -209,7 +210,7 @@ public String myTaskPage(Model model){
 
 
     @PostMapping ("/listprofile/addtask/{listId}") // add task  on to do list
-    public RedirectView addtask (Principal p, Model model,@PathVariable Long listId, @RequestParam String username , @RequestParam String task) {
+    public RedirectView addtask (Principal p, Model model,@PathVariable Long listId, @RequestParam String username , @RequestParam String task, @RequestParam String description) {
         Users member=usersRepositorie.findByusername(username);
 
         ToDoList toDoList=ToDoListRepositories.findById(listId)
@@ -217,7 +218,7 @@ public String myTaskPage(Model model){
         Users admin = usersRepositorie.findByusername(p.getName());
 
         if(toDoList.getMembers().contains(member)||toDoList.getUsers().equals(admin)) {
-            ToDoListItems newItem= new ToDoListItems(task,"0");
+            ToDoListItems newItem= new ToDoListItems(task,"0", description);
             newItem.setTodolist(toDoList);
             newItem.setUsersmember(member);
             ToDoListItemsRepositories.save(newItem);
@@ -232,5 +233,14 @@ public String myTaskPage(Model model){
        }
 
 
+    @GetMapping ("/taskslist")
+    public String taskDescription (Principal p, Model model) {
+
+        Users newUser = usersRepositorie.findByusername(p.getName());
+        List<ToDoListItems> todolist =  ToDoListItemsRepositories.findByusersmember_id( newUser.getId());
+        model.addAttribute("TaskDescriptionList", todolist);
+
+        return "tasksList";
+    }
 
 }
