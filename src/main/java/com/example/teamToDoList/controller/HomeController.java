@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -118,6 +119,7 @@ public String myTaskPage(Model model){
         @GetMapping("/profile")
         public  String userProfile(Principal p, Model model) {
         Users newUser=usersRepositorie.findByusername(p.getName());
+        newUser.getToDoListItems();
         model.addAttribute("userInfo",newUser);
             return "userProfile";
 
@@ -215,21 +217,41 @@ public String myTaskPage(Model model){
         ToDoList toDoList=ToDoListRepositories.findById(listId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + listId));
         Users admin = usersRepositorie.findByusername(p.getName());
-
-        if(toDoList.getMembers().contains(member)||toDoList.getUsers().equals(admin)) {
+System.out.println(toDoList.getUsers().getId()+".....................99");
+        System.out.println(admin.getId()+".....................66");
+        if(toDoList.getUsers().getId()==admin.getId()){
+        if(toDoList.getMembers().contains(member)||toDoList.getUsers().getId()==member.getId()) {
             ToDoListItems newItem= new ToDoListItems(task,"0");
             newItem.setTodolist(toDoList);
             newItem.setUsersmember(member);
             ToDoListItemsRepositories.save(newItem);
-            return new RedirectView("/listprofile/"+listId+"?adddone=one")  ;
+            return new RedirectView("/listprofile/"+listId+"?adddone=on2e")  ;
 
 
 
 
         }
+            return new RedirectView("/listprofile/"+listId+"?errorone=1")  ;
+        }
 
-        return new RedirectView("/listprofile/"+listId+"?errorone=1")  ;
+        return new RedirectView("/listprofile/"+listId+"?eradmin=1")  ;
        }
+
+
+
+
+    @GetMapping ("/mytasks")
+    public String notfications (Principal p,Model model ) {
+        Users admin = usersRepositorie.findByusername(p.getName());
+      List<ToDoListItems> items= ToDoListItemsRepositories.findMytask("0",admin.getId());
+
+        model.addAttribute("todomembers",items);
+
+
+
+        return "notfecation";
+
+    }
 
 
 
