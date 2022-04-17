@@ -19,5 +19,7 @@ List<ToDoListItems>findBytodolist_id(Long id);
    List<ToDoListItems>  findMytask(String ststes ,Long userId);
 
 
+    @Query("SELECT c FROM ToDoListItems c WHERE c.status = ?1 and c.todolist.id = ?2")
+    List<ToDoListItems>  findToDoItems(String ststes ,Long todolistid);
 
 }
