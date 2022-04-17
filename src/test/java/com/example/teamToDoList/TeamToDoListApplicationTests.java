@@ -2,19 +2,44 @@ package com.example.teamToDoList;
 
 import com.example.teamToDoList.Repositories.UsersRepositorie;
 import com.example.teamToDoList.controller.HomeController;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.web.servlet.MockMvc;
+
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
+
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TeamToDoListApplicationTests{
+    @Autowired
+    UsersRepositorie usersRepositorie;
+
+    private MockMvc mockMvc;
+
+    @Autowired
+    private WebApplicationContext webapplicationContext;
+
+    @BeforeEach
+    public void setUp() {
+        mockMvc = MockMvcBuilders.webAppContextSetup(webapplicationContext).build();
+    }
+    @Test
+    void contextLoads() {
+    }
     @Test
     public void homepage() {
         String results = HomeController.homePage();
         assertEquals("home", results);
     }
+
     @Test
     public void signup() {
         String results = HomeController.signupPage();
@@ -47,8 +72,44 @@ public class TeamToDoListApplicationTests{
         assertEquals("toDoListName", results);
     }
     @Autowired
-    UsersRepositorie usersRepositorie;
+    private TestRestTemplate restTemplate;
+    @LocalServerPort
+    private int port;
+    @Test
+    public void HomePageTest() throws Exception {
 
-    private MockMvc mockMvc;
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/",
+                String.class)).contains("Home")
+                .contains("about")
+                .contains("Login")
+                .contains("Team organizer")
+               .contains("created by");
+
+    }
+    @Test
+    public void LoginPageTest() throws Exception {
+
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/login",
+                String.class)).contains("Login")
+                .contains("Enter your Username")
+                .contains("Enter your Password")
+                .contains("Forgot password")
+                .contains("submit");
+
+    }
+    @Test
+    public void signPageTest() throws Exception {
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/signup",
+                String.class)).contains("Signup")
+                .contains("First Name")
+                .contains("Last Name")
+                .contains("Enter Your Email")
+                .contains("Already have an account")
+                .contains("Your Phone")
+                .contains("Login now");
+
+    }
+ 
 
 }
+
