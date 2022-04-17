@@ -22,6 +22,9 @@ public class ToDoListItems {
     @NonNull
     private String status;
 
+    @NonNull
+    private String description;
+
 
     @ManyToOne
     ToDoList todolist;

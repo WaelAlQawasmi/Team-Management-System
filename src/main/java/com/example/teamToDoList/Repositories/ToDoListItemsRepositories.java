@@ -13,6 +13,7 @@ import java.util.List;
 @Repository
 public interface ToDoListItemsRepositories extends JpaRepository<ToDoListItems,Long> {
 List<ToDoListItems>findBytodolist_id(Long id);
+List<ToDoListItems> findByusersmember_id (Long id);
 
 
     @Query("SELECT c FROM ToDoListItems c WHERE c.status = ?1 and c.usersmember.id = ?2")

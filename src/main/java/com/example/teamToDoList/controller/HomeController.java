@@ -211,17 +211,23 @@ public String myTaskPage(Model model){
 
 
     @PostMapping ("/listprofile/addtask/{listId}") // add task  on to do list
-    public RedirectView addtask (Principal p, Model model,@PathVariable Long listId, @RequestParam String username , @RequestParam String task) {
+    public RedirectView addtask (Principal p, Model model,@PathVariable Long listId, @RequestParam String username , @RequestParam String task, @RequestParam String description) {
         Users member=usersRepositorie.findByusername(username);
 
         ToDoList toDoList=ToDoListRepositories.findById(listId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + listId));
         Users admin = usersRepositorie.findByusername(p.getName());
-System.out.println(toDoList.getUsers().getId()+".....................99");
+
+        if(toDoList.getMembers().contains(member)||toDoList.getUsers().equals(admin)) {
+            ToDoListItems newItem= new ToDoListItems(task,"0", description);
+
+         System.out.println(toDoList.getUsers().getId()+".....................99");
         System.out.println(admin.getId()+".....................66");
         if(toDoList.getUsers().getId()==admin.getId()){
         if(toDoList.getMembers().contains(member)||toDoList.getUsers().getId()==member.getId()) {
             ToDoListItems newItem= new ToDoListItems(task,"0");
+
+          
             newItem.setTodolist(toDoList);
             newItem.setUsersmember(member);
             ToDoListItemsRepositories.save(newItem);
@@ -238,6 +244,15 @@ System.out.println(toDoList.getUsers().getId()+".....................99");
        }
 
 
+    @GetMapping ("/taskslist")
+    public String taskDescription (Principal p, Model model) {
+
+        Users newUser = usersRepositorie.findByusername(p.getName());
+        List<ToDoListItems> todolist =  ToDoListItemsRepositories.findByusersmember_id( newUser.getId());
+        model.addAttribute("TaskDescriptionList", todolist);
+
+        return "tasksList";
+    }
 
 
     @GetMapping ("/mytasks")
