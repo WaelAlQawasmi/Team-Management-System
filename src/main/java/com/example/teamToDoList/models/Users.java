@@ -1,3 +1,4 @@
+
 package com.example.teamToDoList.models;
 
 
@@ -99,3 +100,4 @@ public class Users implements UserDetails {
     @OneToMany(mappedBy="usersmember")
     List <post>posts;
 }
+

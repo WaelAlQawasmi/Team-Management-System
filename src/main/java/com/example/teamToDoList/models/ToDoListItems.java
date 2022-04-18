@@ -1,3 +1,4 @@
+
 package com.example.teamToDoList.models;
 
 import lombok.*;
@@ -32,3 +33,4 @@ public class ToDoListItems {
     @ManyToOne
     Users usersmember;
 }
+

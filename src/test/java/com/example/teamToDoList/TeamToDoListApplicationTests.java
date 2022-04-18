@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+
+=======
 package com.example.teamToDoList;
 
 import com.example.teamToDoList.Repositories.UsersRepositorie;
@@ -113,3 +116,4 @@ public class TeamToDoListApplicationTests{
 
 }
 
+>>>>>>> refs/remotes/origin/main
