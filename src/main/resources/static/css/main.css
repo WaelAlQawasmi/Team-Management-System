@@ -12,7 +12,6 @@
     box-sizing: border-box;
     outline: none; border: none;
     text-decoration: none;
-    text-transform: capitalize;
     transition: .2s linear;
 }
 html {
@@ -58,8 +57,8 @@ section {
     font-size: 4rem;
 }
 
-.heading span {
-    color: var(--main-color);
+.about .heading span {
+    color: #1a8fe3;
     text-transform: uppercase;
 }
 
@@ -68,8 +67,8 @@ section {
     display:inline-block;
     padding: .9rem 3rem;
     font-size: 1.7rem;
-    color: #fff;
-    background: #266150;
+    color: white;
+    background: #645c50;
     cursor: pointer;
 }
 
@@ -78,150 +77,13 @@ section {
 }
 
 
-/* Header starts */
-.header {
-    background: var(--black);
-    display: flex;
-    align-items: center;
-    font-size:20px;
-    justify-content: space-between;
-    padding: 1.5rem 7%;
-    border-bottom: #464646;
-    position: relative;
-    top: 0; left: 0; right: 0;
-    z-index: 1000;
-}
-
-.header .logo img {
-    height:6rem;
-}
-
-.header .navbar a {
-    margin: 0 1rem ;
-    font-size: 1.6rem;
-    color: #141414;
-}
-
-.header .navbar a:hover {
-    color: var(--main-color);
-    border-bottom: .1rem solid var(--main-color);
-    padding-bottom: .5rem;
-}
-
-.header .icons div{
-    color: #fff;
-    cursor: pointer;
-    font-size: 2.5rem;
-    margin-left: 2rem;
-}
-
-.header .icons div:hover {
-    color: var(--main-color);
-}
-
-#menu-btn {
-    display: none;
-}
-.menu{
-flex-grow: 1;
-}
-
-.header .search-form {
-    position: absolute;
-    top: 115%; right: 7%;
-    background: #fff;
-    width: 50rem;
-    height: 5rem;
-    display: flex;
-    align-items: center;
-    transform: scaleY(0);
-    transform-origin: top;
-}
-
-.header .search-form.active {
-    transform: scaleY(1)
-}
-
-.header .search-form input {
-    height: 100%;
-    width: 100%;
-    font-size: 1.6rem;
-    color: var(--black);
-    padding: 1rem;
-    text-transform: none;
-}
-
-.header .search-form label {
-    cursor: pointer;
-    font-size: 2.2rem;
-    margin-right: 1.5rem;
-    color: var(--black);
-}
-
-.header .search-form label:hover {
-    color: var(--main-color);
-}
-
-.header .cart-items-container {
-    position: absolute;
-    top: 100%; right: -100%;
-    height: calc(100vh - 9.5rem);
-    width: 35rem;
-    background: #fff;
-    padding: 0 1.5rem;
-}
-.header .cart-items-container.active {
-    right: 0;
-}
-.header .cart-items-container .cart-item {
-    position: relative;
-    margin: 2rem 0;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-
-}
-.header .cart-items-container .cart-item .fa-times {
-    position: absolute;
-    top: 1rem; right: 1rem;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--black);
-}
-
-.header .cart-items-container .cart-item .fa-times:hover{
-    color: var(--main-color);
-}
-
-.header .cart-items-container .cart-item img {
-    height: 7rem;
-
-}
-
-.header .cart-items-container .cart-item .content h3 {
-    font-size: 2rem;
-    color: var(--black);
-    padding-bottom: .5rem;
-}
-
-.header .cart-items-container .cart-item .content .price {
-    font-size: 1.5rem;
-    color: var(--main-color);
-}
-
-.header .cart-items-container .btn {
-    width: 100%;
-    text-align: center;
-}
-
-/* Header Ends */
 
 /* Home section starts */
 .home {
     min-height: 100vh;
     display:flex;
     align-items:center;
-    background: url(../image/homeBackground.jpg);
+    background: url(../image/tl.jpeg);
     background-size: cover;
     background-position: center;
 }
@@ -232,15 +94,15 @@ flex-grow: 1;
 }
 .home .content h3 {
     font-size: 6rem;
-    text-decoration: uppercase;
-    color: #ADA498;
+    text-decoration: uppercanse;
+    color: #1a8fe3;
 }
 .home .content p {
     font-size: 1.5rem;
     font-weight: lighter;
     line-height:1.8;
     padding: 1rem 0;
-    color: #5F5A54;
+    color: black;
 }
 
 /* Home section ends */
@@ -259,7 +121,6 @@ flex-grow: 1;
 }
 .about .row .image img{
     width: 100%;
-    opacity: 0.5;
 }
 .about .row .content {
     flex: 1 1 45rem;
@@ -268,12 +129,12 @@ flex-grow: 1;
 
 .about .row .content h3 {
     font-size: 3rem;
-    color: #ADA498;
+    color: #645c50;
 }
 
 .about .row .content p {
     font-size: 1.6rem;
-    color: #847D74;
+    color: black;
     padding: 1rem 0;
     line-height: 1.8;
 }
@@ -390,7 +251,7 @@ flex-grow: 1;
 }
 
 .contact .row form .inputBox span {
-    color: #fff;
+    color: #1a8fe3;
     font-size: 2rem;
     padding-left: 2rem;
 }
@@ -407,7 +268,7 @@ flex-grow: 1;
 
 /* footer section starts */
 .footer {
-    background: #E9DAC1;
+    background: #645c50;
     text-align: center;
      height:100%;
     margin-top: auto;
@@ -425,7 +286,7 @@ width: 100%;
     width: 5rem;
     line-height: 5rem;
     font-size: 2rem;
-    color: #847D74;
+    color: wheat;
     border: var(--border);
     margin: .3rem;
     border-radius: 50%;
@@ -446,7 +307,7 @@ width: 100%;
 
 .footer .links a {
     padding: .7rem 2rem;
-    color: #847D74;
+    color: wheat;
     border: var(--border);
     font-size: 2rem;
 }
@@ -457,7 +318,7 @@ width: 100%;
 }
 .footer .credit {
     font-size: 2rem;
-    color: #847D74;
+    color: white;
     font-weight: lighter;
 
 }
@@ -505,9 +366,7 @@ width: 100%;
     html {
     font-size: 55%;
     }
-    .header {
-        padding: 1.5rem 2rem;
-    }
+
     section {
     padding: 2rem ;
 
@@ -518,9 +377,7 @@ width: 100%;
     html {
     font-size: 55%;
 }
-    .header {
-        padding: 1.5rem 2rem;
-    }
+
 
 }
 
@@ -528,28 +385,8 @@ width: 100%;
     #menu-btn {
     display: inline-block;
     }
-    .header .navbar {
-        position: absolute;
-        top: 100%; right: -100%;
-        background: #fff;
-        width: 30rem;
-        height: calc(100vh - 9.5rem)
-    }
-    .header .navbar.active {
-        right: 0;
-    }
-    .header .navbar a {
-        display: block;
-        margin: 1.5rem;
-        padding: .5rem;
-        font-size: 2rem;
-        color: var(--black);
-    }
 
-    .header .search-form {
-        width: 90%;
-        right: 2rem;
-    }
+
     .home {
         background-position: left;
         justify-content:content;

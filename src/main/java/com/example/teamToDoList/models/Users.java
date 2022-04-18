@@ -1,3 +1,4 @@
+
 package com.example.teamToDoList.models;
 
 
@@ -16,6 +17,7 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
+@Table(name = "users")
 @RequiredArgsConstructor
 @NoArgsConstructor
 public class Users implements UserDetails {
@@ -91,5 +93,11 @@ public class Users implements UserDetails {
     List<ToDoList> todolists ;
 
     @ManyToMany(mappedBy = "members", fetch = FetchType.EAGER)
-    public List<ToDoList> users;
+    public List<ToDoList> tasks;
+
+    @OneToMany(mappedBy="usersmember")
+    List<ToDoListItems> toDoListItems ;
+    @OneToMany(mappedBy="usersmember")
+    List <post>posts;
 }
+

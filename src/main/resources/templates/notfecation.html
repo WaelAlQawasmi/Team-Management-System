@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul th:each="task:${todomembers}">
+    <li th:text="${task.getName()}"></li>
+    <form th:action="${'taskstatus/accept/'+task.getId()}" method="post">
+        <button type="submit">accept</button>
+    </form>
+    <form th:action="${'taskstatus/reject/'+task.getId()}" method="post">
+        <button type="submit">reject</button>
+    </form>
+    <li th:text="${task.getStatus()}"></li>
+</ul>
+<h1 th:text="${number}"></h1>
+
+</body>
+</html>

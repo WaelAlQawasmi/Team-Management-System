@@ -36,7 +36,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
         protected void configure(final HttpSecurity http) throws Exception {
             http.cors().disable().csrf().disable()
                     .authorizeRequests()
-                    .antMatchers("/login", "/signup", "/","/forgot_password","/reset_password").permitAll() // allow access to login page without Authentication
+                    .antMatchers("/login", "/signup", "/", "/forgot_password").permitAll() // allow access to login page without Authentication
                     .antMatchers("/image/**", "/css/**").permitAll()
                     .anyRequest().authenticated() // any ather page need login
                     .and()
@@ -44,7 +44,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
                     .and().rememberMe().and().formLogin()
                     .loginPage("/login").permitAll() // the GitMapping rout in controller of login
                     .loginProcessingUrl("/login") // the action of login form
-                    .defaultSuccessUrl("/myTask",true)
+                    .defaultSuccessUrl("/dashboard",true)
                     .failureUrl("/login?error=true")
                     .and()
                     .logout()

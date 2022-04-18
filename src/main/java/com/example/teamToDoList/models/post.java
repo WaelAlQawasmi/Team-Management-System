@@ -1,8 +1,6 @@
-
 package com.example.teamToDoList.models;
 
 import lombok.*;
-
 
 import javax.persistence.*;
 
@@ -11,21 +9,16 @@ import javax.persistence.*;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
-@Table(name = "to_do_list_items")
-public class ToDoListItems {
+@Table(name = "post")
+public class post {
 
     @Setter(value = AccessLevel.NONE)
     @Id
     @GeneratedValue
     private Long id;
-    @NonNull
-    private String name;
-    @NonNull
-    private String status;
 
     @NonNull
-    private String description;
-
+    private String comment;
 
     @ManyToOne
     ToDoList todolist;
@@ -33,4 +26,3 @@ public class ToDoListItems {
     @ManyToOne
     Users usersmember;
 }
-

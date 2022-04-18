@@ -3,24 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link th:href="@{/css/toDoListName.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
 <div th:insert="~{/header :: my-fragment2}"></div>
 
-<section>
 
-    <div class="form">
 
-        <div>
-            <h1>New To Do List</h1>
-            <form action="/addtodo" method="post">
-                <input class="input_name"type="text" name="toDoListName" placeholder="Enter to do list name here"><br>
-                <input class="submit_name" type="submit" value="Continue">
-            </form>
+<div class="container">
+    <input type="checkbox" id="flip">
+    <div class="cover">
+        <div class="forgot">
+            <img th:src="@{/image/new.png}" alt="">
         </div>
     </div>
-</section>
+    <div class="forms">
+        <div class="form-content">
+            <div class="login-form">
+                <div class="title">Create New Todo List </div>
+                <form action="/addtodo" method="post">
+                    <div class="input-boxes">
+
+                        <!-- todolist Name -->
+                        <div class="input-box">
+                            <i class="fa-solid fa-clipboard-list"></i>
+                            <input name="toDoListName" type="text" placeholder="Name Of Todo List" required>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="button input-box">
+                            <input type="submit" value="Create">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 </body>

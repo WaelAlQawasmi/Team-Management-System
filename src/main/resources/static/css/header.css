@@ -13,47 +13,47 @@
     box-sizing: border-box;
     outline: none; border: none;
     text-decoration: none;
-    text-transform: capitalize;
     transition: .2s linear;
 }
-html,body{
-height:100%;
-width:100%;
-}
-html {
+header {
     font-size: 62.5%;
-    overflow-x: hidden;
-    scroll-padding-top: 9rem;
-    scroll-behavior: smooth;
-}
 
-html::-webkit-scrollbar {
-    width: .8rem;
-}
-
-html::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-html::-webkit-scrollbar-thumb {
-    background: #fff;
-    border-radius: 5rem;
-}
-
-body {
-    background: black;
 }
 
 
 
 
+.heading {
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    padding-bottom: 3.5rem;
+    font-size: 4rem;
+}
 
+.heading span {
+    color: var(--main-color);
+    text-transform: uppercase;
+}
 
+.btn {
+    margin-top: 1rem;
+    display:inline-block;
+    padding: .9rem 3rem;
+    font-size: 1.7rem;
+    color: #fff;
+    background: var(--main-color);
+    cursor: pointer;
+}
 
+.btn:hover {
+    letter-spacing: .2rem;
+}
 
 /* Header starts */
 .header {
-    background: var(--black);
+    height: 80px;
+    background: #645c50;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -65,15 +65,20 @@ body {
 }
 
 .header .logo img {
-    height:6rem;
+    height:50px;
 }
 
 .header .navbar a {
     margin: 0 1rem ;
-    font-size: 1.6rem;
-    color: #fff;
+    font-size: 18px;
+    color: wheat;
+    text-decoration: none;
 }
-
+.header .navbar i{
+    margin: 0 1rem ;
+    font-size: 18px;
+    color: wheat;
+}
 .header .navbar a:hover {
     color: var(--main-color);
     border-bottom: .1rem solid var(--main-color);
@@ -90,103 +95,118 @@ body {
 .header .icons div:hover {
     color: var(--main-color);
 }
-/* Header Ends */
 
-
-/* Home section starts */
-.home {
-    min-height: 100vh;
-    display:flex;
-    align-items:center;
-    background-size: cover;
-    background-position: center;
+#menu-btn {
+    display: none;
 }
 
-.home .content {
-    max-width: 60rem;
-
-}
-.home .content h3 {
-    font-size: 6rem;
-    text-transform: uppercase;
-    color: #fff;
-}
-.home .content p {
-    font-size: 1.5rem;
-    font-weight: lighter;
-    line-height:1.8;
-    padding: 1rem 0;
-    color: #fff;
-}
-
-
-
-
-
-/* footer section starts */
-.footer {
-    background: var(--black);
-    text-align: center;
-    position:absolute;
-       bottom:0;
-       width:100%;
-}
-
-.footer .share {
-    padding: 1rem 0;
-}
-
-.footer .share a {
+.header .search-form {
+    position: absolute;
+    top: 115%; right: 7%;
+    background: #fff;
+    width: 50rem;
     height: 5rem;
-    width: 5rem;
-    line-height: 5rem;
-    font-size: 2rem;
-    color: #fff;
-    border: var(--border);
-    margin: .3rem;
-    border-radius: 50%;
-}
-
-.footer .share a:hover {
-    background-color: var(--main-color);
-    color: var(--bg);
-}
-
-.footer .links {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 2rem 0;
-    gap: 1rem;
+    align-items: center;
+    transform: scaleY(0);
+    transform-origin: top;
 }
 
-.footer .links a {
-    padding: .7rem 2rem;
-    color: #fff;
-    border: var(--border);
-    font-size: 2rem;
+.header .search-form.active {
+    transform: scaleY(1)
 }
 
-.footer .links a:hover {
-    background-color: var(--main-color);
-    color: var(--bg);
-}
-.footer .credit {
-    font-size: 2rem;
-    color: #fff;
-    font-weight: lighter;
-    padding: 1.5rem;
+.header .search-form input {
+    height: 100%;
+    width: 100%;
+    font-size: 1.6rem;
+    color: var(--black);
+    padding: 1rem;
+    text-transform: none;
 }
 
-.footer .credit span {
+.header .search-form label {
+    cursor: pointer;
+    font-size: 2.2rem;
+    margin-right: 1.5rem;
+    color: var(--black);
+}
+
+.header .search-form label:hover {
     color: var(--main-color);
 }
-/* footer section ends */
+
+.header .cart-items-container {
+    position: absolute;
+    top: 100%; right: -100%;
+    height: calc(100vh - 9.5rem);
+    width: 35rem;
+    background: #fff;
+    padding: 0 1.5rem;
+}
+.header .cart-items-container.active {
+    right: 0;
+}
+.header .cart-items-container .cart-item {
+    position: relative;
+    margin: 2rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+}
+.header .cart-items-container .cart-item .fa-times {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--black);
+}
+
+.header .cart-items-container .cart-item .fa-times:hover{
+    color: var(--main-color);
+}
+
+.header .cart-items-container .cart-item img {
+    height: 40px;
+
+}
+
+.header .cart-items-container .cart-item .content h3 {
+    font-size: 2rem;
+    color: var(--black);
+    padding-bottom: .5rem;
+}
+
+.header .cart-items-container .cart-item .content .price {
+    font-size: 1.5rem;
+    color: var(--main-color);
+}
+
+.header .cart-items-container .btn {
+    width: 100%;
+    text-align: center;
+}
+
+/**/
+.notification {
+    color: white;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+}
 
 
 
-
-
+.notification .badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+}
+/* Header Ends */
 
 
 
@@ -215,22 +235,14 @@ body {
 
 /* media queries */
 @media(max-width:991px) {
-    html {
-    font-size: 55%;
-    }
+
     .header {
         padding: 1.5rem 2rem;
     }
-    section {
-    padding: 2rem ;
 
-}
 
 }
 @media(max-width:768px) {
-    html {
-    font-size: 55%;
-}
     .header {
         padding: 1.5rem 2rem;
     }
@@ -238,9 +250,7 @@ body {
 }
 
 @media(max-width:991px) {
-    #menu-btn {
-    display: inline-block;
-    }
+
     .header .navbar {
         position: absolute;
         top: 100%; right: -100%;
@@ -263,36 +273,13 @@ body {
         width: 90%;
         right: 2rem;
     }
-    .home {
-        background-position: left;
-        justify-content:content;
-        text-align: center;
-    }
-    .home .content h3 {
-        font-size: 4.5rem;
-    }
-    .home .content p {
-        font-size: 1.5rem;
-    }
-}
 
-@media(max-width:450px) {
-    html {
-    font-size: 55%;
-    }
+
+
 
 
 }
-/*© 2022 GitHub, Inc.*/
-/*Terms*/
-/*Privacy*/
-/*Security*/
-/*Status*/
-/*Docs*/
-/*Contact GitHub*/
-/*Pricing*/
-/*API*/
-/*Training*/
-/*Blog*/
-/*About*/
-/*Loading complete*/
+
+
+
+
