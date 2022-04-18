@@ -252,7 +252,16 @@
                                 <label for="recipient-name" class="col-form-label">Task Description :</label>
                                 <textarea  class="form-control" style="text-transform: none;" name="description" id="recipient-name"> </textarea>
                                 <label for="recipient-name" class="col-form-label">username:</label>
-                                <input type="text" class="form-control" style="text-transform: none;" name="username" id="recipient-name">
+<!--                                <input type="text" class="form-control" style="text-transform: none;" name="username" id="recipient-name">-->
+                                <select class="form-control" style="text-transform: none;" name="username" id="recipient-name">
+                                    <option value="">Select User</option>
+                                    <option th:value="${todoadmin.getUsername()}" th:text="${todoadmin.getUsername()}"></option>
+                                    <option th:each="mem : ${todomembers}"
+                                            th:value="${mem.getUsername()}"
+                                            th:text="${mem.getUsername()}">
+                                    </option>
+
+                                </select>
                             </div>
 
 
