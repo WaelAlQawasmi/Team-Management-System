@@ -5,6 +5,7 @@ import com.example.teamToDoList.Repositories.*;
 import com.example.teamToDoList.models.ToDoList;
 import com.example.teamToDoList.models.ToDoListItems;
 import com.example.teamToDoList.models.Users;
+import com.example.teamToDoList.models.post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,7 +17,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.websocket.server.PathParam;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,13 +29,14 @@ public class HomeController {
     private  ToDoListItemsRepositories  ToDoListItemsRepositories;
     private  UsersRepositorie usersRepositorie ;
     private ToDoListRepositories  ToDoListRepositories;
-    public HomeController(UsersRepositorie usersRepositorie, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositories, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositoriesl, com.example.teamToDoList.Repositories.ToDoListItemsRepositories toDoListItemsRepositories) {
+    public HomeController(UsersRepositorie usersRepositorie, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositories, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositoriesl, com.example.teamToDoList.Repositories.ToDoListItemsRepositories toDoListItemsRepositories, PostRepostries postRepositories) {
         this.usersRepositorie = usersRepositorie;
         ToDoListRepositories = toDoListRepositories;
         ToDoListItemsRepositories = toDoListItemsRepositories;
+        this.postRepositories = postRepositories;
     }
 
-
+private final PostRepostries postRepositories;
 
 
     @GetMapping ("/dashboard")
@@ -190,8 +191,7 @@ public String myTaskPage(Model model){
         model.addAttribute("todomembers",toDoList.getMembers());
 
         model.addAttribute("todoitems",ToDoListItemsRepositories.findToDoItems("0",id));
-
-
+        model.addAttribute("posts",postRepositories.findAllPostById(id));
         if (toDoList.getUsers().getId() != usersRepositorie.findByusername(p.getName()).getId())
         {
             model.addAttribute("flag",false);
@@ -208,9 +208,17 @@ public String myTaskPage(Model model){
         return "todolistprofile";
 
     }
-
-
-
+@PostMapping("/listprofile/addComment/{id}")
+public RedirectView addComment ( Principal p,@RequestParam String comment,@PathVariable Long id,Model model) {
+    Users newUser=usersRepositorie.findByusername(p.getName());
+    ToDoList toDoList=ToDoListRepositories.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+    post post=new post();
+    post.setComment(comment);
+    post.setUsersmember(newUser);
+    post.setTodolist(toDoList);
+    postRepositories.save(post);
+    return new RedirectView("/listprofile/"+id);
+}
     @PostMapping ("/listprofile/adduser/{id}") // add user  on to do list
     public RedirectView adduser ( @PathVariable Long id, @RequestParam String username) {
 
