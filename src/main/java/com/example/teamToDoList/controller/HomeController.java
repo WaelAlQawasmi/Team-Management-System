@@ -212,14 +212,15 @@ public String myTaskPage(Model model){
             model.addAttribute("flag",true);
             model.addAttribute("delI",true);
         }
-
+        List<ToDoListItems> rejected=ToDoListItemsRepositories.findToDoItems("reject",id);
  List<ToDoListItems> toDoItems=ToDoListItemsRepositories.findToDoItems("0",id);
         List<ToDoListItems> acceptItems=ToDoListItemsRepositories.findToDoItems("accept",id);
         List<ToDoListItems> doneItems=ToDoListItemsRepositories.findToDoItems("done",id);
         model.addAttribute("todoitems",toDoItems);
         model.addAttribute("doingitems",acceptItems);
         model.addAttribute("doneitems",doneItems);
-        float total=toDoItems.size()+doneItems.size()+acceptItems.size();
+        model.addAttribute("rejecteditems",rejected);
+        float total=toDoItems.size()+doneItems.size()+acceptItems.size()+rejected.size();
         float progress=doneItems.size()/total*100;
         model.addAttribute("progress",(int)progress);
 

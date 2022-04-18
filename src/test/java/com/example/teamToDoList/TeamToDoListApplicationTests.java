@@ -1,3 +1,4 @@
+
 package com.example.teamToDoList;
 
 import com.example.teamToDoList.Repositories.UsersRepositorie;
@@ -294,6 +295,7 @@ String password="123";
         ResponseEntity<?> response= restTemplate.withBasicAuth(username,password).getForEntity("/taskslist",String.class);
 
 
+
         assertEquals(200,response.getStatusCodeValue());
     }
     @Test
@@ -341,3 +343,4 @@ public void requistAndAprove()throws Exception{
     assertEquals(302,response.getStatusCodeValue());
 }
 }
+
