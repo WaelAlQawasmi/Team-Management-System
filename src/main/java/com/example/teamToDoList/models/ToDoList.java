@@ -30,10 +30,10 @@ public class ToDoList {
         joinColumns = {@JoinColumn(name = "todo_id")},
         inverseJoinColumns = {@JoinColumn(name = "user_id")}
 )
-
 List<Users> members;
 
-
+    @OneToMany(mappedBy = "todolist")
+    List<post>posts;
     @OneToMany(mappedBy = "todolist")
     List<ToDoListItems>toDoListItems;
 
