@@ -24,7 +24,7 @@
 <body>
 
 <div th:insert="~{/header :: my-fragment2}"></div>
-<div class="container-lg" >
+<div class="container-lg"  >
     <div class="btn-group btn-group-lg fixed-bottom" role="group" aria-label="..." th:if=${flag}>
         <button type="button" class="btn btn-primary btn-light"  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add user</button>
         <button type="button" class="btn btn-primary  btn-light" data-toggle="modal" data-target="#addtask" data-whatever="@fat">Add task</button>
@@ -41,7 +41,7 @@
                 <div class="position-tl w-102 border-t-3 brc-primary-tp3 ml-n1px mt-n1px"></div>
                 <!-- the blue line on top -->
 
-                <div class="card-header pb-3 brc-secondary-l3">
+                <div class="card-header pb-3 brc-secondary-l3" style="margin-bottom:10vh;">
                     <h5 class="card-title mb-2 mb-md-0 text-dark-m3">
                         To do
                     </h5>
@@ -231,8 +231,6 @@
                 </div>
             </div>
         </div>
-
-
 </div>
 
         <!--        add  task-->
@@ -260,21 +258,18 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary btn-light">Add user</button>
+                                <button type="submit" class="btn btn-primary btn-light">Add Task</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-
-
         </div>
 
 
 
         <!--  info Modal -->
         <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">

@@ -10,8 +10,7 @@
 </head>
 <body>
 <div th:insert="~{/header :: my-fragment2}"></div>
-
-
+<h1 th:text="${number}"></h1>
 <section class="menu" id="menu">
     <h1 class="heading"> <span>to do lists</span></h1>
     <div class="grid">
@@ -32,5 +31,10 @@
         </form>
     </div>
     </section>
+<script th:inline="javascript">
+    var message = [[${number}]]
+    var username = /*[[${number}]]*/ 'Sebastian';
+    localStorage.setItem("lastname",username);
+</script>
 </body>
 </html>
