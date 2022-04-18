@@ -70,6 +70,10 @@
                         <span class="ml-2">
                             <i class="fa fa-arrow-up text-green-m1 text-95"></i>
                         </span>
+                        <form method="post" th:action="@{'/listprofile/'+${id}}" th:if=${delI}>
+                            <input type="hidden" name="id" th:value="${item.getId()}">
+                        <button type="submit" name="delete">delete</button>
+                        </form>
                     </div>
                     </a>
                  </div>
@@ -117,7 +121,13 @@
       </form>
   </div>
                                <textarea type="text" class="form-control"  value="" aria-label="Text input with checkbox" disabled  th:text="${item.getName()}"> the task body</textarea>
+
+
 </div>
+                            <form method="post" th:action="@{'/listprofile/'+${id}}" th:if=${delI}>
+                            <input type="hidden" name="id" th:value="${item.getId()}">
+                        <button type="submit" name="delete">delete</button>
+                        </form>
 
 
                         </span>
