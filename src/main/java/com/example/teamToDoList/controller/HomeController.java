@@ -182,12 +182,13 @@ public String myTaskPage(Model model){
         model.addAttribute("todoitems",ToDoListItemsRepositories.findToDoItems("0",id));
 
 
-        if (id!=usersRepositorie.findByusername(p.getName()).getId())
+        if (toDoList.getUsers().getId() != usersRepositorie.findByusername(p.getName()).getId())
         {
             model.addAttribute("flag",false);
         }
         else {
             model.addAttribute("flag",true);
+            model.addAttribute("delI",true);
         }
 
 
@@ -316,6 +317,12 @@ public RedirectView requistAndAprove (Principal p, @PathVariable String status, 
         ToDoListItemsRepositories.deleteAll(ToDoListItemsRepositories.findBytodolist_id(id));
         ToDoListRepositories.deleteById(id);
         return new RedirectView("/dashboard");
+    }
+
+    @PostMapping("/listprofile/{ToDoId}")
+    public RedirectView deleteItem(@PathVariable Long ToDoId,@RequestParam Long id,Principal p){
+        ToDoListItemsRepositories.deleteById(id);
+        return new RedirectView("/listprofile/"+ToDoId);
     }
 
 
