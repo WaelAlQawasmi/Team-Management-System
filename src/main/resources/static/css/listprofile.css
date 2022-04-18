@@ -1,7 +1,7 @@
 .container-lg{
 position: relative;
-    top: 15vh;
-    margin-top: 10px;
+    /*top: 15vh;*/
+    /*margin-top: 10px;*/
 }
 
 ody{
@@ -79,4 +79,27 @@ ody{
 }
 .text-95 {
     font-size: .95em!important;
+}
+
+/*Title*/
+.title{
+    position: relative;
+    font-size: 28px;
+    font-weight: 500;
+    color: #333;
+    margin-top:100px;
+    margin-left:100px;
+    margin-bottom:20px;
+}
+.title:before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 35px;
+    background: #1a8fe3;
+}
+.title:before{
+    width: 20px;
 }

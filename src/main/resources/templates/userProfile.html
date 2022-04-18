@@ -34,7 +34,7 @@
                         <div class="d-flex flex-column align-items-center text-center">
                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                             <div class="mt-3">
-                                <h4 th:text="${userInfo.getFirstName()} +' '+ ${userInfo.getLastName()}"></h4>
+                                <h4 th:text="${userInfo.getUsername()}"></h4>
                                 <p class="text-secondary mb-1" th:text="${userInfo.getPosition()}"></p>
 <!--                                <p class="text-muted font-size-sm" th:text="${userInfo.getAddress()}"></p>-->
 <!--                                <button class="btn btn-primary">Follow</button>-->
@@ -106,7 +106,7 @@
     </div>
 </div>
 
-<div th:insert="~{/header :: modal-fragment}"></div>
+<!--<div th:insert="~{/header :: modal-fragment}"></div>-->
 
 </body>
 </html>

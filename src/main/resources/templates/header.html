@@ -12,7 +12,7 @@
                     <a href="/myTask">To-Do List member</a>
                     <a href="/profile">Profile</a>
     <!--                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">-->
-                        <a href="#" class="notification" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <a href="/notifications" class="notification" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                             <i class="fa-solid fa-bell"></i>
                             <span class="badge" id="numberOfNotificatinos"></span>
                         </a>
@@ -27,28 +27,6 @@
                 document.getElementById('numberOfNotificatinos').innerHTML=v;
             </script>
         </header>
-    <!-- Modal -->
-    <div th:fragment="modal-fragment" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Notifications</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h6>Tasks Name</h6>
-                    <p>Tasks Description</p>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-primary">Accept</button>
-                        <button type="button" class="btn btn-primary">Deny</button>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 
