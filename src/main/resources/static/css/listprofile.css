@@ -2,13 +2,27 @@
 position: relative;
     /*top: 15vh;*/
     /*margin-top: 10px;*/
+bottom:10vh;
+margin-top:200px;
 }
-
-ody{
-    margin-top:20px;
+.comment_form{
+margin-top:40px
+}
+.comment_label{
+font-size:20px;
+}
+body{
     background:#eee;
-}
 
+}
+html,body{
+}
+.comment_img_username_beside{
+display: flex;
+}
+.username_comment{
+padding :10px;
+}
 .btn-primary {
     color: #fff;
     background-color: #54BAB9fd;

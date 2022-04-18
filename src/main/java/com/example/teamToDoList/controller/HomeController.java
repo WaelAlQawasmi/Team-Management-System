@@ -5,6 +5,7 @@ import com.example.teamToDoList.Repositories.*;
 import com.example.teamToDoList.models.ToDoList;
 import com.example.teamToDoList.models.ToDoListItems;
 import com.example.teamToDoList.models.Users;
+import com.example.teamToDoList.models.post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,7 +17,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.websocket.server.PathParam;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,13 +29,14 @@ public class HomeController {
     private  ToDoListItemsRepositories  ToDoListItemsRepositories;
     private  UsersRepositorie usersRepositorie ;
     private ToDoListRepositories  ToDoListRepositories;
-    public HomeController(UsersRepositorie usersRepositorie, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositories, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositoriesl, com.example.teamToDoList.Repositories.ToDoListItemsRepositories toDoListItemsRepositories) {
+    public HomeController(UsersRepositorie usersRepositorie, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositories, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositoriesl, com.example.teamToDoList.Repositories.ToDoListItemsRepositories toDoListItemsRepositories, PostRepostries postRepositories) {
         this.usersRepositorie = usersRepositorie;
         ToDoListRepositories = toDoListRepositories;
         ToDoListItemsRepositories = toDoListItemsRepositories;
+        this.postRepositories = postRepositories;
     }
 
-
+private final PostRepostries postRepositories;
 
 
     @GetMapping ("/dashboard")
@@ -158,16 +159,27 @@ public String myTaskPage(Model model){
 
 
     @PostMapping ("/addtodo") //post
-    public RedirectView addtodo (Principal p,@RequestParam String toDoListName) {
+    public RedirectView addtodo (Principal p,@RequestParam String toDoListName,@RequestParam String username) {
+                  // @RequestParam username I added it for testing
+             try {
+                 Users newUser = usersRepositorie.findByusername(p.getName());
+                 ToDoList newList = new ToDoList(toDoListName);
+                 newList.setUsers(newUser);
+                 ToDoListRepositories.save(newList);
+                 newList.getId();
+                 return new RedirectView("/listprofile/"+newList.getId()) ;
+             }catch(Exception e){
+                 // I did this for testing
+                 Users newUser = usersRepositorie.findByusername(username);
+                 ToDoList newList = new ToDoList(toDoListName);
+                 newList.setUsers(newUser);
+
+                 ToDoListRepositories.save(newList);
+                 newList.getId();
+                 return new RedirectView("/listprofile/"+newList.getId()) ;
+             }
 
 
-            Users newUser = usersRepositorie.findByusername(p.getName());
-            ToDoList newList = new ToDoList(toDoListName);
-            newList.setUsers(newUser);
-
-            ToDoListRepositories.save(newList);
-            newList.getId();
-        return new RedirectView("/listprofile/"+newList.getId()) ;
 
 
 
@@ -192,24 +204,45 @@ public String myTaskPage(Model model){
         model.addAttribute("todoitems",ToDoListItemsRepositories.findToDoItems("0",id));
 
 
-        if (id!=usersRepositorie.findByusername(p.getName()).getId())
+
+        model.addAttribute("todoadmin",toDoList.getUsers());
+        model.addAttribute("posts",postRepositories.findAllPostById(id));
+
+        if (toDoList.getUsers().getId() != usersRepositorie.findByusername(p.getName()).getId())
         {
             model.addAttribute("flag",false);
         }
         else {
             model.addAttribute("flag",true);
+            model.addAttribute("delI",true);
         }
+        List<ToDoListItems> rejected=ToDoListItemsRepositories.findToDoItems("reject",id);
+ List<ToDoListItems> toDoItems=ToDoListItemsRepositories.findToDoItems("0",id);
+        List<ToDoListItems> acceptItems=ToDoListItemsRepositories.findToDoItems("accept",id);
+        List<ToDoListItems> doneItems=ToDoListItemsRepositories.findToDoItems("done",id);
+        model.addAttribute("todoitems",toDoItems);
+        model.addAttribute("doingitems",acceptItems);
+        model.addAttribute("doneitems",doneItems);
+        model.addAttribute("rejecteditems",rejected);
+        float total=toDoItems.size()+doneItems.size()+acceptItems.size()+rejected.size();
+        float progress=doneItems.size()/total*100;
+        model.addAttribute("progress",(int)progress);
 
-
-        model.addAttribute("doingitems",ToDoListItemsRepositories.findToDoItems("accept",id));
-        model.addAttribute("doneitems",ToDoListItemsRepositories.findToDoItems("done",id));
 
         return "todolistprofile";
 
     }
-
-
-
+@PostMapping("/listprofile/addComment/{id}")
+public RedirectView addComment ( Principal p,@RequestParam String comment,@PathVariable Long id,Model model) {
+    Users newUser=usersRepositorie.findByusername(p.getName());
+    ToDoList toDoList=ToDoListRepositories.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+    post post=new post();
+    post.setComment(comment);
+    post.setUsersmember(newUser);
+    post.setTodolist(toDoList);
+    postRepositories.save(post);
+    return new RedirectView("/listprofile/"+id);
+}
     @PostMapping ("/listprofile/adduser/{id}") // add user  on to do list
     public RedirectView adduser ( @PathVariable Long id, @RequestParam String username) {
 
@@ -327,6 +360,12 @@ public RedirectView requistAndAprove (Principal p, @PathVariable String status, 
         ToDoListRepositories.deleteById(id);
 
         return new RedirectView("/dashboard");
+    }
+
+    @PostMapping("/listprofile/{ToDoId}")
+    public RedirectView deleteItem(@PathVariable Long ToDoId,@RequestParam Long id,Principal p){
+        ToDoListItemsRepositories.deleteById(id);
+        return new RedirectView("/listprofile/"+ToDoId);
     }
 
 
