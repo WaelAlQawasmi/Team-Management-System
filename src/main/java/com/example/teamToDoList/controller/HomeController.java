@@ -189,7 +189,7 @@ public String myTaskPage(Model model){
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         model.addAttribute("id",id);
         model.addAttribute("todomembers",toDoList.getMembers());
-
+        model.addAttribute("todoadmin",toDoList.getUsers());
         model.addAttribute("todoitems",ToDoListItemsRepositories.findToDoItems("0",id));
         model.addAttribute("posts",postRepositories.findAllPostById(id));
         if (toDoList.getUsers().getId() != usersRepositorie.findByusername(p.getName()).getId())
