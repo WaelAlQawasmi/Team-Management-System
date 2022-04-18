@@ -23,7 +23,8 @@
 <body>
 
 <div th:insert="~{/header :: my-fragment2}"></div>
-<div class="container-lg"  >
+<h1 th:text="${todolistName}" class="title" ></h1>
+<div class="container-lg" style="margin-bottom:50px;" >
     <div class="btn-group btn-group-lg fixed-bottom" role="group" aria-label="..." th:if=${flag}>
         <button type="button" class="btn btn-primary btn-light"  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add user</button>
         <button type="button" class="btn btn-primary  btn-light" data-toggle="modal" data-target="#addtask" data-whatever="@fat">Add task</button>

@@ -18,7 +18,7 @@
         <a th:href="${'listprofile/'+task.todolist.getId()}" class="list-group-item list-group-item-action flex-column align-items-start ">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1" th:text="${task.getName()}"></h5>
-                <small th:text="${task.todolist.getId()}" ></small>
+                <small th:text="${task.todolist.getName()}" ></small>
             </div>
             <p class="mb-1" th:text="${task.getDescription()}"></p>
         </a>

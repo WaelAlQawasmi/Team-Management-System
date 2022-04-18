@@ -200,6 +200,10 @@ public String myTaskPage(Model model){
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         model.addAttribute("id",id);
         model.addAttribute("todomembers",toDoList.getMembers());
+        model.addAttribute("todolistName", toDoList.getName());
+        model.addAttribute("todoitems",ToDoListItemsRepositories.findToDoItems("0",id));
+
+
 
         model.addAttribute("todoadmin",toDoList.getUsers());
         model.addAttribute("posts",postRepositories.findAllPostById(id));
@@ -313,7 +317,7 @@ public RedirectView addComment ( Principal p,@RequestParam String comment,@PathV
     @GetMapping ("/notifications")
     public String notifications (Principal p,Model model ) {
         Users user = usersRepositorie.findByusername(p.getName());
-      List<ToDoListItems> items= ToDoListItemsRepositories.findMytask("0",user.getId());
+        List<ToDoListItems> items= ToDoListItemsRepositories.findMytask("0",user.getId());
         model.addAttribute("number",items.size());
         model.addAttribute("todomembers",items);
         return "notfecation";
