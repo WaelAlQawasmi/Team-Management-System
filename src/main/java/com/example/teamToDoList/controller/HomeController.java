@@ -159,16 +159,27 @@ public String myTaskPage(Model model){
 
 
     @PostMapping ("/addtodo") //post
-    public RedirectView addtodo (Principal p,@RequestParam String toDoListName) {
+    public RedirectView addtodo (Principal p,@RequestParam String toDoListName,@RequestParam String username) {
+                  // @RequestParam username I added it for testing
+             try {
+                 Users newUser = usersRepositorie.findByusername(p.getName());
+                 ToDoList newList = new ToDoList(toDoListName);
+                 newList.setUsers(newUser);
+                 ToDoListRepositories.save(newList);
+                 newList.getId();
+                 return new RedirectView("/listprofile/"+newList.getId()) ;
+             }catch(Exception e){
+                 // I did this for testing
+                 Users newUser = usersRepositorie.findByusername(username);
+                 ToDoList newList = new ToDoList(toDoListName);
+                 newList.setUsers(newUser);
+
+                 ToDoListRepositories.save(newList);
+                 newList.getId();
+                 return new RedirectView("/listprofile/"+newList.getId()) ;
+             }
 
 
-            Users newUser = usersRepositorie.findByusername(p.getName());
-            ToDoList newList = new ToDoList(toDoListName);
-            newList.setUsers(newUser);
-
-            ToDoListRepositories.save(newList);
-            newList.getId();
-        return new RedirectView("/listprofile/"+newList.getId()) ;
 
 
 
