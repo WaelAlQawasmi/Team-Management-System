@@ -10,7 +10,7 @@
     <form th:action="${'taskstatus/accept/'+task.getId()}" method="post">
         <button type="submit">accept</button>
     </form>
-    <form action="${'taskstatus/reject/'+task.getId()}" method="post">
+    <form th:action="${'taskstatus/reject/'+task.getId()}" method="post">
         <button type="submit">reject</button>
     </form>
     <li th:text="${task.getStatus()}"></li>

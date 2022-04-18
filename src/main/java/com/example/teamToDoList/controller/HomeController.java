@@ -189,7 +189,7 @@ public String myTaskPage(Model model){
         model.addAttribute("id",id);
         model.addAttribute("todomembers",toDoList.getMembers());
 
-        model.addAttribute("todoitems",ToDoListItemsRepositories.findToDoItems("0",id));
+
 
 
         if (toDoList.getUsers().getId() != usersRepositorie.findByusername(p.getName()).getId())
@@ -201,9 +201,16 @@ public String myTaskPage(Model model){
             model.addAttribute("delI",true);
         }
 
+ List<ToDoListItems> toDoItems=ToDoListItemsRepositories.findToDoItems("0",id);
+        List<ToDoListItems> acceptItems=ToDoListItemsRepositories.findToDoItems("accept",id);
+        List<ToDoListItems> doneItems=ToDoListItemsRepositories.findToDoItems("done",id);
+        model.addAttribute("todoitems",toDoItems);
+        model.addAttribute("doingitems",acceptItems);
+        model.addAttribute("doneitems",doneItems);
+        float total=toDoItems.size()+doneItems.size()+acceptItems.size();
+        float progress=doneItems.size()/total*100;
+        model.addAttribute("progress",(int)progress);
 
-        model.addAttribute("doingitems",ToDoListItemsRepositories.findToDoItems("accept",id));
-        model.addAttribute("doneitems",ToDoListItemsRepositories.findToDoItems("done",id));
 
         return "todolistprofile";
 
