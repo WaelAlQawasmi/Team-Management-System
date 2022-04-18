@@ -36,7 +36,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
         protected void configure(final HttpSecurity http) throws Exception {
             http.cors().disable().csrf().disable()
                     .authorizeRequests()
-                    .antMatchers("/login", "/signup", "/").permitAll() // allow access to login page without Authentication
+                    .antMatchers("/login", "/signup", "/", "/forgot_password").permitAll() // allow access to login page without Authentication
                     .antMatchers("/image/**", "/css/**").permitAll()
                     .anyRequest().authenticated() // any ather page need login
                     .and()
