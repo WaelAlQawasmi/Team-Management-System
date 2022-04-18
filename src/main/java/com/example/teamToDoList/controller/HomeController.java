@@ -39,11 +39,16 @@ public class HomeController {
 
 
     @GetMapping ("/dashboard")
-    public  String Dashboard(Model model) {
+    public  String Dashboard(Principal p ,Model model) {
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
         Users user=usersRepositorie.findByusername(authentication.getName());
         model.addAttribute("todolist",user.getTodolists());
         model.addAttribute("del",true);
+        //
+        List<ToDoListItems> items= ToDoListItemsRepositories.findMytask("0",user.getId());
+        model.addAttribute("number",items.size());
+        model.addAttribute("todomembers",items);
+        //
         return "myTask";
     }
 
@@ -117,6 +122,11 @@ public String myTaskPage(Model model){
     Users user=usersRepositorie.findByusername(authentication.getName());
         model.addAttribute("todolist",user.getTasks());
         model.addAttribute("del",false);
+        //
+        List<ToDoListItems> items= ToDoListItemsRepositories.findMytask("0",user.getId());
+        model.addAttribute("number",items.size());
+        model.addAttribute("todomembers",items);
+        //
         return "myTask";
 }
 
@@ -315,6 +325,7 @@ public RedirectView requistAndAprove (Principal p, @PathVariable String status, 
         Optional<ToDoList> toDoDelete=ToDoListRepositories.findById(id);
         ToDoListItemsRepositories.deleteAll(ToDoListItemsRepositories.findBytodolist_id(id));
         ToDoListRepositories.deleteById(id);
+
         return new RedirectView("/dashboard");
     }
 
