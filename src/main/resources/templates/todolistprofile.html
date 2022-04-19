@@ -78,7 +78,7 @@
                     </div>
 
                     <div class="card-body">
-                        <h5 class="card-title" th:text="${item.getName()}">Info card title</h5>
+
 
                         <p class="card-text" th:text="${item.getDescription()}">
                         </p>
@@ -112,7 +112,7 @@
                     </div>
 
                     <div class="card-body">
-                        <h5 class="card-title" th:text="${item.getName()}">Info card title</h5>
+
 
                         <p class="card-text" th:text="${item.getDescription()}">
                         </p>
@@ -162,7 +162,7 @@
                     </div>
 
                     <div class="card-body">
-                        <h5 class="card-title" th:text="${item.getName()}">Info card title</h5>
+
 
                         <p class="card-text" th:text="${item.getDescription()}">
                         </p>
@@ -189,44 +189,47 @@
                 <div class="card-header pb-3 brc-secondary-l3">
                     <h5 class="card-title mb-2 mb-md-0 text-dark-m3">
                         Done
+                        <i title="done"> &#9989;</i>
                     </h5>
                 </div>
 
                 <div th:each="item:${doneitems}">
-                    <div class="card-body pt-2 pb-1">
-                        <a th:href="@{'/profile/' + ${item.getUsersmember().getId()}}">
-                            <div role="button"
-                                 class="d-flex flex-wrap align-items-center my-2 bgc-secondary-l4 bgc-h-secondary-l3 radius-1 p-25 d-style">
-                        <span class="mr-25 w-4 h-4 overflow-hidden text-center border-1 brc-secondary-m2 radius-round shadow-sm d-zoom-2">
-                            <img alt="Alexa's avatar" src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                                 class="h-4 w-4"/>
-                        </span>
+                    <div class="card bg-light mb-3" style="margin:5px" >
 
-                                <span class="text-default-d3 text-90 text-600"
-                                      th:text="${item.getUsersmember().getUsername()}">
-                            Alexa
-                        </span>
+                        <div class="card-header">
 
-                                <span class="ml-auto text-dark-l2 text-nowrap" style="    margin-left: 10px;"
-                                      th:text="${item.getName()}">
-                            1,250
-                            <span class="text-80">
-                                USD
-                            </span>
-                        </span>
+                            <span th:text="${item.getName()}"></span>
 
-                                <span class="ml-2">
-                            <i title="done"> &#9989;</i>
-                        </span>
-                            </div>
-                        </a>
+                            <form style="display: inline-block;margin-left: 75%;" method="post"
+                                  th:action="@{'/listprofile/'+${id}}" th:if=${delI}>
+                                <input type="hidden" name="id" th:value="${item.getId()}">
+
+
+                                <button type="submit" name="delete" style="font-size: 21px;color:red"> &#128465;</button>
+                            </form>
+                        </div>
+
+                        <div class="card-body">
+
+
+                            <p class="card-text" th:text="${item.getDescription()}">
+                            </p>
+                            <a style="display: block;text-align: right;"
+                               th:href="@{'/profile/' + ${item.getUsersmember().getId()}}"
+                               th:text="${item.getUsersmember().getUsername()}"></a>
+
+                        </div>
                     </div>
+
 
                 </div>
             </div>
         </div>
     </div>
 
+
+
+    <!-- progress  -->
         <div class="progress">
             <div class="progress-bar" role="progressbar" th:style="'width:'+${progress}+'%;'"
                  th:aria-valuenow="${progress}" aria-valuemin="0" aria-valuemax="100"
