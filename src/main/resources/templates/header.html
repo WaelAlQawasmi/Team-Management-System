@@ -11,23 +11,21 @@
                     <a href="/taskslist">Tasks</a>
                     <a href="/myTask">To-Do List member</a>
                     <a href="/profile">Profile</a>
-    <!--                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">-->
                         <a href="/notifications" class="notification" >
                             <i class="fa-solid fa-bell"></i>
                             <span class="badge" id="numberOfNotificatinos"></span>
                         </a>
-                         <!--                </button>-->
                     <form class="logout-form" action="/logout" method="post" style="display: inline-block;">
                         <button type="submit" style="background-color: #645c50;"> <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
                     </form>
-
                 </nav>
             <script>
                 var v = localStorage.getItem("lastname");
-                document.getElementById('numberOfNotificatinos').innerHTML=v;
+                if (v === "0"){
+                    document.getElementById("numberOfNotificatinos").visibility = "hidden";
+                }else {
+                    document.getElementById('numberOfNotificatinos').innerHTML = v;
+                }
             </script>
         </header>
-
-
-
 </html>

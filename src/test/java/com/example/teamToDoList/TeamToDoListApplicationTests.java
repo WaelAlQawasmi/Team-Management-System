@@ -2,8 +2,8 @@
 package com.example.teamToDoList;
 
 import com.example.teamToDoList.Repositories.UsersRepositorie;
-import com.example.teamToDoList.controller.HomeController;
-import com.example.teamToDoList.models.Users;
+import com.example.teamToDoList.controller.ToDoListController;
+import com.example.teamToDoList.controller.UnAuthenticationController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,39 +57,25 @@ public class TeamToDoListApplicationTests{
     }
     @Test
     public void homepage() {
-        String results = HomeController.homePage();
+        String results = UnAuthenticationController.homePage();
         assertEquals("home", results);
     }
 
     @Test
     public void signup() {
-        String results = HomeController.signupPage();
+        String results = UnAuthenticationController.signupPage();
         assertEquals("signup", results);
     }
     @Test
     public void login() {
-        String results = HomeController.loginPage();
+        String results = UnAuthenticationController.loginPage();
         assertEquals("login", results);
     }
-    @Test
-    public void header() {
-        String results = HomeController.header();
-        assertEquals("header", results);
-    }
-    @Test
-    public void unAuthHeader() {
-        String results = HomeController.unAuthHeader();
-        assertEquals("unauthheader", results);
-    }
-    @Test
-    public void forgotPage() {
-        String results = HomeController.forgotPage();
-        assertEquals("forgot", results);
-    }
+
 
     @Test
     public void userProfile() {
-        String results = HomeController.toDoListName();
+        String results = ToDoListController.toDoListName();
         assertEquals("toDoListName", results);
     }
     @Autowired
