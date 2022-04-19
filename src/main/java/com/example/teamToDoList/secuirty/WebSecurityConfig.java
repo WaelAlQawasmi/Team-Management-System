@@ -16,10 +16,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
     @EnableWebSecurity//to enable the  HttpSecurity
     public class WebSecurityConfig extends WebSecurityConfigurerAdapter {  //
 
-        @Autowired // to acces to rebo methode without create anstans
+        @Autowired // to access to repository methode without create instance
         userDetalesServiseimp userDetailsService;
 
-        @Bean// to accec to any class methods without create instance
+        @Bean// to access to any class methods without create instance
         public PasswordEncoder getPasswordEncoder(){ // auto created
             PasswordEncoder encoder = new BCryptPasswordEncoder();// to select the encode
 
@@ -36,9 +36,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
         protected void configure(final HttpSecurity http) throws Exception {
             http.cors().disable().csrf().disable()
                     .authorizeRequests()
-                    .antMatchers("/login", "/signup", "/", "/forgot_password").permitAll() // allow access to login page without Authentication
+                    .antMatchers("/login", "/signup", "/", "/forgot_password", "/reset_password").permitAll() // allow access to login page without Authentication
                     .antMatchers("/image/**", "/css/**").permitAll()
-                    .anyRequest().authenticated() // any ather page need login
+                    .anyRequest().authenticated() // any other page need  login
                     .and()
                     .formLogin() // in login form
                     .and().rememberMe().and().formLogin()

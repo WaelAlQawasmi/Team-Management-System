@@ -33,6 +33,8 @@ public class Users implements UserDetails {
     private String firstName;
     @NonNull
     private String lastName;
+
+    @Column (unique = true)
     @NonNull
     private String email;
     @NonNull
@@ -97,6 +99,7 @@ public class Users implements UserDetails {
 
     @OneToMany(mappedBy="usersmember")
     List<ToDoListItems> toDoListItems ;
+
     @OneToMany(mappedBy="usersmember")
     List <post>posts;
 }

@@ -26,10 +26,11 @@ public class ToDoListItems {
     @NonNull
     private String description;
 
-
+    // Add List Of Items On One To-do List
     @ManyToOne
     ToDoList todolist;
 
+    // Add List Of Items For One User
     @ManyToOne
     Users usersmember;
 }
