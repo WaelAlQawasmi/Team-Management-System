@@ -166,6 +166,7 @@ public String myTaskPage(Model model){
                  newList.setUsers(newUser);
                  ToDoListRepositories.save(newList);
                  newList.getId();
+
                  return new RedirectView("/listprofile/"+newList.getId()) ;
 
 
@@ -193,6 +194,7 @@ public String myTaskPage(Model model){
         model.addAttribute("todolistName", toDoList.getName());
         model.addAttribute("todoitems",ToDoListItemsRepositories.findToDoItems("0",id));
 
+        model.addAttribute("currentuser",usersRepositorie.findByusername(p.getName()).getId());
 
 
         model.addAttribute("todoadmin",toDoList.getUsers());
