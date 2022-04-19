@@ -13,21 +13,19 @@
 <div th:insert="~{/header :: my-fragment2}"></div>
 <div class="list-group" style="margin-top: 70px; padding: 0px 50px;">
     <div th:each="task:${TaskDescriptionList}" >
-        <!--            <div th:if="${task.getStatus() == 0}">-->
-<!--        ${'addtask/'+id}-->
-        <a th:href="${'listprofile/'+task.todolist.getId()}" class="list-group-item list-group-item-action flex-column align-items-start ">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1" th:text="${task.getName()}"></h5>
-                <small th:text="${task.todolist.getName()}" ></small>
-            </div>
-            <p class="mb-1" th:text="${task.getDescription()}"></p>
-        </a>
-        <!--            </div>-->
-        <!--            <div th:unless="${task.getStatus() == 1}">-->
-        <!--                <h1> You Don't Have Any Task !</h1>-->
-        <!--            </div>-->
+<!--        <div th:if="${task.getStatus()} == 0">-->
+            <a th:href="${'listprofile/'+task.todolist.getId()}" class="list-group-item list-group-item-action flex-column align-items-start ">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1" th:text="${task.getName()}"></h5>
+                    <small th:text="${task.todolist.getName()}" ></small>
+                </div>
+                <p class="mb-1" th:text="${task.getDescription()}"></p>
+            </a>
+<!--        </div>-->
+<!--        <div th:unless="${task.getStatus()} != 0">-->
+<!--            <h1> You Don't Have Any Task !</h1>-->
+<!--        </div>-->
     </div>
-
 </div>
 </body>
 </html>

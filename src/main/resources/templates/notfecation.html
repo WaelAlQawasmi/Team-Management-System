@@ -23,25 +23,24 @@
 
 <div class="list-group" style="margin-top: 70px; padding: 0px 50px;">
     <div th:each="task:${todomembers}" >
-        <!--            <div th:if="${task.getStatus() == 0}">-->
-        <!--        ${'addtask/'+id}-->
-        <div class="list-group-item list-group-item-action flex-column align-items-start ">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1" th:text="${task.getName()}"></h5>
-                <small th:text="${task.todolist.getName()}" ></small>
+<!--        <div th:if="${${task.getStatus()} == 0}">-->
+            <div class="list-group-item list-group-item-action flex-column align-items-start ">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1" th:text="${task.getName()}"></h5>
+                    <small th:text="${task.todolist.getName()}" ></small>
+                </div>
+                <p class="mb-1" th:text="${task.getDescription()}"></p>
+                <form th:action="${'taskstatus/accept/'+task.getId()}" method="post" style="display:inline-block;">
+                    <button type="submit">accept</button>
+                </form>
+                <form action="${'taskstatus/reject/'+task.getId()}" method="post" style="display:inline-block;">
+                    <button type="submit">reject</button>
+                </form>
             </div>
-            <p class="mb-1" th:text="${task.getDescription()}"></p>
-            <form th:action="${'taskstatus/accept/'+task.getId()}" method="post" style="display:inline-block;">
-                <button type="submit">accept</button>
-            </form>
-            <form action="${'taskstatus/reject/'+task.getId()}" method="post" style="display:inline-block;">
-                <button type="submit">reject</button>
-            </form>
-        </div>
-        <!--            </div>-->
-        <!--            <div th:unless="${task.getStatus() == 1}">-->
-        <!--                <h1> You Don't Have Any Task !</h1>-->
-        <!--            </div>-->
+<!--        </div>-->
+<!--        <div th:unless="${${task.getStatus()} != 0}">-->
+<!--            <h1> You Don't Have Any Requests!</h1>-->
+<!--        </div>-->
     </div>
 
 </div>
