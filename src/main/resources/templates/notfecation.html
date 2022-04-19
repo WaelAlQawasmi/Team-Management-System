@@ -34,7 +34,7 @@
             <form th:action="${'taskstatus/accept/'+task.getId()}" method="post" style="display:inline-block;">
                 <button type="submit">accept</button>
             </form>
-            <form action="${'taskstatus/reject/'+task.getId()}" method="post" style="display:inline-block;">
+            <form th:action="${'taskstatus/reject/'+task.getId()}" method="post" style="display:inline-block;">
                 <button type="submit">reject</button>
             </form>
         </div>
