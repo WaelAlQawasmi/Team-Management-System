@@ -1,6 +1,7 @@
 package com.example.teamToDoList.models;
 
 import lombok.*;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
@@ -20,9 +21,11 @@ public class post {
     @NonNull
     private String comment;
 
+    // To Determine The To-do List Of Post
     @ManyToOne
     ToDoList todolist;
 
+    // To Determine The Owner Of Post
     @ManyToOne
     Users usersmember;
 }

@@ -21,20 +21,24 @@ public class ToDoList {
     @NonNull
     private String name;
 
-@ManyToOne
+    // To Determine The Admin Of To-do List
+    @ManyToOne
     Users users;
 
-
+    // Members Of To-do List
     @ManyToMany
-@JoinTable(
-        name = "todolistmembers",
-        joinColumns = {@JoinColumn(name = "todo_id")},
-        inverseJoinColumns = {@JoinColumn(name = "user_id")}
-)
-List<Users> members;
+        @JoinTable(
+            name = "todolistmembers",
+            joinColumns = {@JoinColumn(name = "todo_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")}
+        )
+    List<Users> members;
 
+    // Add List Of Comment
     @OneToMany(mappedBy = "todolist")
     List<post>posts;
+
+    // Add List Of Items
     @OneToMany(mappedBy = "todolist")
     List<ToDoListItems>toDoListItems;
 
