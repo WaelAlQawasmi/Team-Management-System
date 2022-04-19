@@ -37,10 +37,24 @@
                     <button type="submit">reject</button>
                 </form>
             </div>
+
 <!--        </div>-->
 <!--        <div th:unless="${${task.getStatus()} != 0}">-->
 <!--            <h1> You Don't Have Any Requests!</h1>-->
 <!--        </div>-->
+            <p class="mb-1" th:text="${task.getDescription()}"></p>
+            <form th:action="${'taskstatus/accept/'+task.getId()}" method="post" style="display:inline-block;">
+                <button type="submit">accept</button>
+            </form>
+            <form th:action="${'taskstatus/reject/'+task.getId()}" method="post" style="display:inline-block;">
+                <button type="submit">reject</button>
+            </form>
+        </div>
+        <!--            </div>-->
+        <!--            <div th:unless="${task.getStatus() == 1}">-->
+        <!--                <h1> You Don't Have Any Task !</h1>-->
+        <!--            </div>-->
+
     </div>
 
 </div>

@@ -7,27 +7,35 @@
     <meta>
     <meta charset="UTF-8">
     <title>todo List Profile</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-<style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <style>
     .bt{position: fixed;
     bottom: 6vh;
     right: 0;
     width: 10%;
     font-size: 20px;
     padding: 5px 5px;}
-</style>
+
+    </style>
     <link th:href="@{/css/listprofile.css}" rel="stylesheet">
 </head>
 <body>
 
 <div th:insert="~{/header :: my-fragment2}"></div>
-<h1 th:text="${todolistName}" class="title" ></h1>
-<div class="container-lg" style="margin-bottom:50px;" >
+<h1 th:text="${todolistName}" class="title"></h1>
+<div class="container-lg" style="margin-bottom:50px;">
     <div class="btn-group btn-group-lg fixed-bottom" role="group" aria-label="..." th:if=${flag}>
-        <button type="button" class="btn btn-primary btn-light"  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add user</button>
-        <button type="button" class="btn btn-primary  btn-light" data-toggle="modal" data-target="#addtask" data-whatever="@fat">Add task</button>
+        <button type="button" class="btn btn-primary btn-light" data-toggle="modal" data-target="#exampleModal"
+                data-whatever="@mdo">Add user
+        </button>
+        <button type="button" class="btn btn-primary  btn-light" data-toggle="modal" data-target="#addtask"
+                data-whatever="@fat">Add task
+        </button>
 
 
     </div>
@@ -35,108 +43,92 @@
     <div class="row">
 
 
-
         <div class="col-md-4">
             <div class="card ccard radius-t-0 h-100">
                 <div class="position-tl w-102 border-t-3 brc-primary-tp3 ml-n1px mt-n1px"></div>
                 <!-- the blue line on top -->
 
-                <div class="card-header pb-3 brc-secondary-l3" style="margin-bottom:10vh;">
+                <div class="card-header pb-3 brc-secondary-l3" >
                     <h5 class="card-title mb-2 mb-md-0 text-dark-m3">
                         To do
                     </h5>
                 </div>
 
 
-                <div  th:each="item:${todoitems}">
-                <div class="card-body pt-2 pb-1" >
 
-                    <div role="button" class="d-flex flex-wrap align-items-center my-2 bgc-secondary-l4 bgc-h-secondary-l3 radius-1 p-25 d-style">
-                        <a th:href="@{'/profile/' + ${item.getUsersmember().getId()}}">
-                        <span class="mr-25 w-4 h-4 overflow-hidden text-center border-1 brc-secondary-m2 radius-round shadow-sm d-zoom-2">
-                            <img alt="Alexa's avatar" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="h-4 w-4" />
-                        </span>
 
-                        <span class="text-default-d3 text-90 text-600"  th:text="${item.getUsersmember().getUsername()}" >
-                            Alexa
-                        </span>
-                        </a>
-                        <span class="ml-auto text-dark-l2 text-nowrap"    style="    margin-left: 10px;"   th:text="${item.getName()}" >
-                            1,250
-                            <span class="text-80">
-                                USD
-                            </span>
-                        </span>
 
-                        <span class="ml-2">
-                            <i class="fa fa-arrow-up text-green-m1 text-95" title="the request send put need to accept"></i>
-                        </span>
-                        <form method="post" th:action="@{'/listprofile/'+${id}}" th:if=${delI}>
+
+
+
+                <div class="card bg-light mb-3" style="margin:5px" th:each="item:${todoitems}">
+
+                    <div class="card-header">
+                        <i class="fa fa-arrow-up text-green-m1 text-95"
+                           title="the request send put need to accept"></i>
+                        <span th:text="${item.getName()}"></span>
+
+                        <form style="display: inline-block;margin-left: 75%;" method="post"
+                              th:action="@{'/listprofile/'+${id}}" th:if=${delI}>
                             <input type="hidden" name="id" th:value="${item.getId()}">
-                        <button type="submit" name="delete">delete</button>
+
+
+                            <button type="submit" name="delete" style="font-size: 21px;color:red"> &#128465;</button>
                         </form>
-
-
-                            <p th:text="${item.getDescription()}"></p>
-
                     </div>
 
-                 </div>
+                    <div class="card-body">
 
+
+                        <p class="card-text" th:text="${item.getDescription()}">
+                        </p>
+                        <a style="display: block;text-align: right;"
+                           th:href="@{'/profile/' + ${item.getUsersmember().getId()}}"
+                           th:text="${item.getUsersmember().getUsername()}"></a>
+
+                    </div>
                 </div>
 
 
 
+                <!--                rejected-->
 
 
 
 
-<!--                rejected-->
+                <div class="card bg-light mb-3" style="margin:5px" th:each="item:${rejecteditems}">
+
+                    <div class="card-header">
+                        <i title="rejected"> &#10060;</i>
+                        <span th:text="${item.getName()}"></span>
+
+                        <form style="display: inline-block;margin-left: 75%;" method="post"
+                              th:action="@{'/listprofile/'+${id}}" th:if=${delI}>
+                            <input type="hidden" name="id" th:value="${item.getId()}">
 
 
-
-                <div  th:each="item:${rejecteditems}">
-                    <div class="card-body pt-2 pb-1" >
-
-
-                            <div role="button" class="d-flex flex-wrap align-items-center my-2 bgc-secondary-l4 bgc-h-secondary-l3 radius-1 p-25 d-style">
-                                <a th:href="@{'/profile/' + ${item.getUsersmember().getId()}}">
-                        <span class="mr-25 w-4 h-4 overflow-hidden text-center border-1 brc-secondary-m2 radius-round shadow-sm d-zoom-2">
-
-                            <img alt="Alexa's avatar" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="h-4 w-4" />
-                        </span>
-
-                                <span class="text-default-d3 text-90 text-600"  th:text="${item.getUsersmember().getUsername()}" >
-                            Alexa
-                        </span>
-                        </a>
-                                <span class="ml-auto text-dark-l2 text-nowrap"    style="    margin-left: 10px;"   th:text="${item.getName()}" >
-                            1,250
-                            <span class="text-80">
-                                USD
-                            </span>
-                        </span>
-
-                                <span class="ml-2">
-                            <i title="rejected" > &#10060;</i>
-                        </span>
-                                <form method="post" th:action="@{'/listprofile/'+${id}}" th:if=${delI}>
-                                    <input type="hidden" name="id" th:value="${item.getId()}">
-                                    <button type="submit" name="delete">delete</button>
-                                </form>
-                                <p th:text="${item.getDescription()}"></p>
-
-                            </div>
-
+                            <button type="submit" name="delete" style="font-size: 21px;color:red"> &#128465;</button>
+                        </form>
                     </div>
 
+                    <div class="card-body">
+
+
+                        <p class="card-text" th:text="${item.getDescription()}">
+                        </p>
+                        <a style="display: block;text-align: right;"
+                           th:href="@{'/profile/' + ${item.getUsersmember().getId()}}"
+                           th:text="${item.getUsersmember().getUsername()}"></a>
+
+                    </div>
                 </div>
+
+
             </div>
         </div>
 
 
-
-<!--     /////////////////////////////   Doing  ///////////////////////////// -->
+        <!--     /////////////////////////////   Doing  ///////////////////////////// -->
 
         <div class="col-md-4">
             <div class="card ccard radius-t-0 h-100">
@@ -145,58 +137,49 @@
 
                 <div class="card-header pb-3 brc-secondary-l3">
                     <h5 class="card-title mb-2 mb-md-0 text-dark-m3">
-                     Doing
+                        Doing &#128257;
                     </h5>
                 </div>
 
-                <div  th:each="item:${doingitems}">
+                <div class="card bg-light mb-3" style="margin:5px" th:each="item:${doingitems}">
 
-
-                <div class="card-body pt-2 pb-1">
-                    <div role="button" class="d-flex flex-wrap align-items-center my-2 bgc-secondary-l4 bgc-h-secondary-l3 radius-1 p-25 d-style">
-
-<div>
-
-                         <span class="mr-25 w-4 h-4 overflow-hidden text-center border-1 brc-secondary-m2 radius-round shadow-sm d-zoom-2"  th:text="${item.getUsersmember().getUsername()}">
-
-                        </span>
-</div>
-
-                        <span class="ml-auto text-dark-l2 text-nowrap">
-
-                           <div class="input-group mb-1">
-  <div class="input-group-text">
-      <form  th:action="'/taskstatus/done/'+${item.getId()}+'?todoid='+${item.getTodolist().getId()}" method="post" >
-    <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input" onclick="myFunction()"  onchange="this.form.submit()" >
-      </form>
-  </div>
-
-   <h2 th:text="${item.getName()}"></h2>
-  <p th:text="${item.getDescription()}"></p>
-<i title="doing">&#128257;</i>
-</div>
-                            <form method="post" th:action="@{'/listprofile/'+${id}}" th:if=${delI}>
-                            <input type="hidden" name="id" th:value="${item.getId()}">
-                        <button type="submit" name="delete">delete</button>
+                    <div class="card-header">
+                        <form style="display:inline"
+                              th:action="'/taskstatus/done/'+${item.getId()}+'?todoid='+${item.getTodolist().getId()}"
+                              method="post" th:if=${currentuser==item.getUsersmember().getId()}>
+                            <input class="form-check-input mt-0" type="checkbox" value=""
+                                   aria-label="Checkbox for following text input" onchange="this.form.submit()">
                         </form>
+                        <span th:text="${item.getName()}"></span>
+
+                        <form style="display: inline-block;margin-left: 75%;" method="post"
+                              th:action="@{'/listprofile/'+${id}}" th:if=${delI}>
+                            <input type="hidden" name="id" th:value="${item.getId()}">
 
 
-                        </span>
+                            <button type="submit" name="delete" style="font-size: 21px;color:red"> &#128465;</button>
+                        </form>
+                    </div>
 
+                    <div class="card-body">
+
+
+                        <p class="card-text" th:text="${item.getDescription()}">
+                        </p>
+                        <a style="display: block;text-align: right;"
+                           th:href="@{'/profile/' + ${item.getUsersmember().getId()}}"
+                           th:text="${item.getUsersmember().getUsername()}"></a>
 
                     </div>
                 </div>
 
-                </div>
+
 
             </div>
         </div>
 
 
-
-
-
-<!--   /////////////////////////////////////////  Done  /////////////////////////////////////////-->
+        <!--   /////////////////////////////////////////  Done  /////////////////////////////////////////-->
 
         <div class="col-md-4">
             <div class="card ccard radius-t-0 h-100">
@@ -205,61 +188,67 @@
 
                 <div class="card-header pb-3 brc-secondary-l3">
                     <h5 class="card-title mb-2 mb-md-0 text-dark-m3">
-                    Done
+                        Done
+                        <i title="done"> &#9989;</i>
                     </h5>
                 </div>
 
-                <div  th:each="item:${doneitems}">
-                    <div class="card-body pt-2 pb-1" >
-                        <a th:href="@{'/profile/' + ${item.getUsersmember().getId()}}">
-                            <div role="button" class="d-flex flex-wrap align-items-center my-2 bgc-secondary-l4 bgc-h-secondary-l3 radius-1 p-25 d-style">
-                        <span class="mr-25 w-4 h-4 overflow-hidden text-center border-1 brc-secondary-m2 radius-round shadow-sm d-zoom-2">
-                            <img alt="Alexa's avatar" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="h-4 w-4" />
-                        </span>
+                <div th:each="item:${doneitems}">
+                    <div class="card bg-light mb-3" style="margin:5px" >
 
-                                <span class="text-default-d3 text-90 text-600"  th:text="${item.getUsersmember().getUsername()}" >
-                            Alexa
-                        </span>
+                        <div class="card-header">
 
-                                <span class="ml-auto text-dark-l2 text-nowrap"    style="    margin-left: 10px;"   th:text="${item.getName()}" >
-                            1,250
-                            <span class="text-80">
-                                USD
-                            </span>
-                        </span>
+                            <span th:text="${item.getName()}"></span>
 
-                                <span class="ml-2">
-                            <i  title="done"> &#9989;</i>
-                        </span>
-                            </div>
-                        </a>
+                            <form style="display: inline-block;margin-left: 75%;" method="post"
+                                  th:action="@{'/listprofile/'+${id}}" th:if=${delI}>
+                                <input type="hidden" name="id" th:value="${item.getId()}">
+
+
+                                <button type="submit" name="delete" style="font-size: 21px;color:red"> &#128465;</button>
+                            </form>
+                        </div>
+
+                        <div class="card-body">
+
+
+                            <p class="card-text" th:text="${item.getDescription()}">
+                            </p>
+                            <a style="display: block;text-align: right;"
+                               th:href="@{'/profile/' + ${item.getUsersmember().getId()}}"
+                               th:text="${item.getUsersmember().getUsername()}"></a>
+
+                        </div>
                     </div>
+
 
                 </div>
             </div>
         </div>
+    </div>
 
 
+
+    <!-- progress  -->
         <div class="progress">
-            <div class="progress-bar" role="progressbar" th:style="'width:'+${progress}+'%;'" th:aria-valuenow="${progress}" aria-valuemin="0" aria-valuemax="100" th:text="'total progress ='+${progress}+'%'">25%</div>
+            <div class="progress-bar" role="progressbar" th:style="'width:'+${progress}+'%;'"
+                 th:aria-valuenow="${progress}" aria-valuemin="0" aria-valuemax="100"
+                 th:text="'total progress ='+${progress}+'%'">25%
+            </div>
         </div>
 
 
-
-
-
-
-        <script th:if="${param.eradmin}" > alert("you are not admin")</script>
-          <script th:if="${param.error}" > alert("the user already added")</script>
-        <script th:if="${param.nooneerror}" > alert("no one have this username !")</script>
-        <script th:if="${param.errorone}" > alert("the user didn't added to the list")</script>
-        <script th:if="${param.adddone}" > alert("done!")</script>
+        <script th:if="${param.eradmin}"> alert("you are not admin")</script>
+        <script th:if="${param.error}"> alert("the user already added")</script>
+        <script th:if="${param.nooneerror}"> alert("no one have this username !")</script>
+        <script th:if="${param.errorone}"> alert("the user didn't added to the list")</script>
+        <script th:if="${param.adddone}"> alert("done!")</script>
         <button type="button" class="bt btn-outline-info btn-sm" data-toggle="modal" data-target="#exampleModalLong">
             info
         </button>
 
         <!--  /////////////////////////////   Modales  /////////////////////////////  -->
-<!--        add user module-->
+        <!--        add user module-->
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -273,20 +262,20 @@
                             <div class="mb-3">
 
                                 <label for="recipient-name" class="col-form-label">username:</label>
-                                <input type="text" class="form-control" style="text-transform: none;" name="username" id="recipient-name">
+                                <input type="text" class="form-control" style="text-transform: none;" name="username"
+                                       id="recipient-name">
                             </div>
 
 
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-light">Add user</button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary btn-light">Add user</button>
+                            </div>
+                        </form>
                     </div>
-                    </form>
                 </div>
             </div>
         </div>
-</div>
 
         <!--        add  task-->
 
@@ -302,14 +291,18 @@
                         <form th:action="${'addtask/'+id}" method="post">
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Task Name :</label>
-                                <input  class="form-control" style="text-transform: none;" name="task" id="recipient-name"> </input>
+                                <input class="form-control" style="text-transform: none;" name="task"
+                                       id="recipient-name"> </input>
                                 <label for="recipient-name" class="col-form-label">Task Description :</label>
-                                <textarea  class="form-control" style="text-transform: none;" name="description" id="recipient-name"> </textarea>
+                                <textarea class="form-control" style="text-transform: none;" name="description"
+                                          id="recipient-name"> </textarea>
                                 <label for="recipient-name" class="col-form-label">username:</label>
-<!--                                <input type="text" class="form-control" style="text-transform: none;" name="username" id="recipient-name">-->
-                                <select class="form-control" style="text-transform: none;" name="username" id="recipient-name">
+                                <!--                                <input type="text" class="form-control" style="text-transform: none;" name="username" id="recipient-name">-->
+                                <select class="form-control" style="text-transform: none;" name="username"
+                                        id="recipient-name">
                                     <option value="">Select User</option>
-                                    <option th:value="${todoadmin.getUsername()}" th:text="${todoadmin.getUsername()}"></option>
+                                    <option th:value="${todoadmin.getUsername()}"
+                                            th:text="${todoadmin.getUsername()}"></option>
                                     <option th:each="mem : ${todomembers}"
                                             th:value="${mem.getUsername()}"
                                             th:text="${mem.getUsername()}">
@@ -317,7 +310,6 @@
 
                                 </select>
                             </div>
-
 
 
                             <div class="modal-footer">
@@ -331,9 +323,9 @@
         </div>
 
 
-
         <!--  info Modal -->
-        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -356,46 +348,49 @@
                 </div>
             </div>
         </div>
-    <div class="comment_form">
-    <form th:action="${'addComment/'+id}" method="post">
-        <div class="form-group">
-            <label class="comment_label" for="exampleInputEmail1">comment</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" name="comment"aria-describedby="emailHelp" placeholder="Enter comment" required>
-        </div>
-        <button type="submit" class="btn btn-primary">comment</button>
-    </form>
-
-    </div>
-    <div class="list-group" style="margin-top: 70px; padding: 0px 50px;">
-        <div th:each="post:${posts}" >
-            <a  class="list-group-item list-group-item-action flex-column align-items-start ">
-                <div class="comment_img_username_beside">
-                <div>
-                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" width="50px" heigth="50px"alt="f">
+        <div class="comment_form">
+            <form th:action="${'addComment/'+id}" method="post">
+                <div class="form-group">
+                    <label class="comment_label" for="exampleInputEmail1">comment</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="comment"
+                           aria-describedby="emailHelp" placeholder="Enter comment" required>
                 </div>
-                    <div class="username_comment">
-                <h5 class="mb-1" th:text="${post.getUsersmember().getUsername()}"></h5>
-                <p class="mb-1" th:text="${post.getComment()}"></p>
+                <button type="submit" class="btn btn-primary">comment</button>
+            </form>
+
+        </div>
+        <div class="list-group" style="margin-top: 70px; padding: 0px 50px;">
+            <div th:each="post:${posts}">
+                <a class="list-group-item list-group-item-action flex-column align-items-start ">
+                    <div class="comment_img_username_beside">
+                        <div>
+                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" width="50px" heigth="50px"
+                                 alt="f">
+                        </div>
+                        <div class="username_comment">
+                            <h5 class="mb-1" th:text="${post.getUsersmember().getUsername()}"></h5>
+                            <p class="mb-1" th:text="${post.getComment()}"></p>
+                        </div>
                     </div>
+                </a>
+            </div>
+
         </div>
-            </a>
-        </div>
-
-    </div>
     </div>
 
 
+    <!--task description-->
 
 
-<!--task description-->
-
-
-
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 
 </body>
 </html>
