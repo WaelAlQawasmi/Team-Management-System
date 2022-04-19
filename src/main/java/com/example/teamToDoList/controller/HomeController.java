@@ -29,6 +29,7 @@ public class HomeController {
     private  ToDoListItemsRepositories  ToDoListItemsRepositories;
     private  UsersRepositorie usersRepositorie ;
     private ToDoListRepositories  ToDoListRepositories;
+    private final PostRepostries postRepositories;
     public HomeController(UsersRepositorie usersRepositorie, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositories, com.example.teamToDoList.Repositories.ToDoListRepositories toDoListRepositoriesl, com.example.teamToDoList.Repositories.ToDoListItemsRepositories toDoListItemsRepositories, PostRepostries postRepositories) {
         this.usersRepositorie = usersRepositorie;
         ToDoListRepositories = toDoListRepositories;
@@ -36,7 +37,6 @@ public class HomeController {
         this.postRepositories = postRepositories;
     }
 
-private final PostRepostries postRepositories;
 
 
     @GetMapping ("/dashboard")
@@ -159,25 +159,15 @@ public String myTaskPage(Model model){
 
 
     @PostMapping ("/addtodo") //post
-    public RedirectView addtodo (Principal p,@RequestParam String toDoListName,@RequestParam String username) {
-                  // @RequestParam username I added it for testing
-             try {
+    public RedirectView addtodo (Principal p,@RequestParam String toDoListName) {
+
                  Users newUser = usersRepositorie.findByusername(p.getName());
                  ToDoList newList = new ToDoList(toDoListName);
                  newList.setUsers(newUser);
                  ToDoListRepositories.save(newList);
                  newList.getId();
                  return new RedirectView("/listprofile/"+newList.getId()) ;
-             }catch(Exception e){
-                 // I did this for testing
-                 Users newUser = usersRepositorie.findByusername(username);
-                 ToDoList newList = new ToDoList(toDoListName);
-                 newList.setUsers(newUser);
 
-                 ToDoListRepositories.save(newList);
-                 newList.getId();
-                 return new RedirectView("/listprofile/"+newList.getId()) ;
-             }
 
 
 
@@ -354,9 +344,10 @@ public RedirectView requistAndAprove (Principal p, @PathVariable String status, 
     }
       
          @PostMapping (value = "/dashboard", params = "delete")
-    public RedirectView deleteToDo(Long id){
+    public RedirectView deleteToDo( Long id){
         Optional<ToDoList> toDoDelete=ToDoListRepositories.findById(id);
         ToDoListItemsRepositories.deleteAll(ToDoListItemsRepositories.findBytodolist_id(id));
+             postRepositories.deleteAll(postRepositories.findBytodolist_id(id));
         ToDoListRepositories.deleteById(id);
 
         return new RedirectView("/dashboard");
