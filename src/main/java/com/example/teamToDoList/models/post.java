@@ -17,7 +17,8 @@ public class post {
     @Id
     @GeneratedValue
     private Long id;
-
+    @NonNull
+    private String time;
     @NonNull
     private String comment;
 
