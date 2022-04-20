@@ -10,7 +10,7 @@
                     <a href="/dashboard">Dashboard</a>
                     <a href="/taskslist">Tasks</a>
                     <a href="/myTask">To-Do List member</a>
-                    <a href="/profile">Profile</a>
+                    <a href="/profile" id="Profile">Profile</a>
                         <a href="/notifications" class="notification" >
                             <i class="fa-solid fa-bell"></i>
                             <span class="badge" id="numberOfNotificatinos"></span>
@@ -19,13 +19,6 @@
                         <button type="submit" style="background-color: #645c50;"> <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
                     </form>
                 </nav>
-            <script>
-                var v = localStorage.getItem("lastname");
-                if (v === "0"){
-                    document.getElementById("numberOfNotificatinos").visibility = "hidden";
-                }else {
-                    document.getElementById('numberOfNotificatinos').innerHTML = v;
-                }
-            </script>
+            <script th:src="@{/header.js}">  </script>
         </header>
 </html>
