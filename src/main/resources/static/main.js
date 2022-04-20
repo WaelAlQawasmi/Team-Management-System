@@ -30,3 +30,5 @@ window.onscroll = () =>{
     searchForm.classList.remove('active');
     carItem.classList.remove('active');
 }
+
+
