@@ -45,6 +45,7 @@ public class AuthenticationController {
         Users user=usersRepositorie.findByusername(authentication.getName());// To Find The Name of User
         model.addAttribute("todolist",user.getTodolists());
         model.addAttribute("del",true);
+        model.addAttribute("username",user.getUsername());
         //
         List<ToDoListItems> items= ToDoListItemsRepositories.findMytask("0",user.getId());
         model.addAttribute("number",items.size());
@@ -60,6 +61,7 @@ public class AuthenticationController {
         Users user=usersRepositorie.findByusername(authentication.getName());
         model.addAttribute("todolist",user.getTasks());
         model.addAttribute("del",false);
+        model.addAttribute("username",user.getUsername());
         //
         List<ToDoListItems> items= ToDoListItemsRepositories.findMytask("0",user.getId());
         model.addAttribute("number",items.size());

@@ -33,8 +33,11 @@
     </div>
     </section>
 <script th:inline="javascript">
-    var username = /*[[${number}]]*/ 'Sebastian';
-    localStorage.setItem("lastname",username);
+    var numberOfNotification = /*[[${number}]]*/ 'Sebastian';
+    localStorage.setItem("numberOfNotification",numberOfNotification);
+
+     var username = /*[[${username}]]*/ 'Sebastian';
+    localStorage.setItem("username",username);
 
 </script>
 </body>
