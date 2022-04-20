@@ -1,3 +1,4 @@
+
 .container-lg{
 position: relative;
     /*top: 15vh;*/
@@ -117,3 +118,11 @@ padding :10px;
 .title:before{
     width: 20px;
 }
+
+.bt{position: fixed;
+    bottom: 6vh;
+    right: 0;
+    width: 10%;
+    font-size: 20px;
+    padding: 5px 5px;}
+
