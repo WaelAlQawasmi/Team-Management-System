@@ -1,0 +1,29 @@
+# main Features
+- We have in our application three not authenticated basic pages (home page, login, signup).
+- In the home page (root) we have introduction and about sections, and there is links to login and signup and for contact.
+- In the signup page the user can enter his\her information and the username and email should be unique, and the other fields should not be empty.
+- In the login page if the user enter wrong username or password, a message will appear to tell the user that one of the fields is not correct.
+- If the user forget his\her password, he\she can change his/her password by click on (forgot password) link, then the user can enter his\her email and the application will send an email to the user that contains an url link with a unique token to reset the user's password. when the user enter the new password and confirm the new password and the two fields are matching then he\she can submit the new password and save it in the database.
+    - When the application send the email to the user and everything is done, a message will appear to till the user that **"We have sent a reset password link to your email. Please check."**.
+    - If something wrong happen while sending the email then application will till the user that there is an **"Error while sending email"**.
+    - If the user enter different passwords for password field and the confirmation password field then a message will appear to till the user that the **"Passwords do not match!"**.
+    - When the user enter the Two fields at correct way a message will appear to till the user that **"you have successfully changed your password"** .
+- When the user login to the app successfully, the dashboard page will appear to user. This page has all the To-Do lists that the user created.
+    - In this page the user can create a To-Do list, by click on the **"+"** button in the bottom.
+    - the user can enter to his/her To-Do list.
+    - the user can delete the To-Do list.
+- When the user enter to the To-Do list.
+    - The user can add another users to the To-Do list (only the admin, who create the To-Do list, can add another users).
+    - The user can create tasks and link these tasks with a specific user. (only the admin can do this)
+    - All the members of the To-Do list can create a post comment inside the To-Do list.
+    - Once the admin link a task with a user, the application will send a request to the user, and the user can accept or deny the request, and the task will stay in the to-do section as long as the user doesn't accept the request.
+    - if the user accept the task, the task item will move to the doing section.
+    - If the user check the task item, it will move to the done section.
+    - The admin can delete any task item from the To-Do list. (only the admin can do this)
+    - The user can see all the members of the To-Do list in the info button.
+    - the admin can not link a task with a user doesn't exist in the To-Do list.
+- In the tasks page the user can find a list of all his\her tasks.
+- In the member page the user can find all the To-Do lists that the user member inside it.
+- In the profile page the user can find all his\her personal information in as a card.
+- When the user click on the notification button in the header, he\she can find all the requests that was sent to the user.
+- Finally, the user can log out by click on the logout button in the header.
