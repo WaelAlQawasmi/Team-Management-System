@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -93,9 +95,15 @@ public class AuthenticationController {
     @PostMapping("/listprofile/addComment/{id}")
     public RedirectView addComment (Principal p, @RequestParam String comment, @PathVariable Long id) {
         Users newUser=usersRepositorie.findByusername(p.getName());
+       //git local time with format
         ToDoList toDoList=ToDoListRepositories.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        LocalDateTime myDateObj = LocalDateTime.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String formattedDate = myDateObj.format(myFormatObj);
+     //
         post post=new post();
         post.setComment(comment);
+        post.setTime(formattedDate);
         post.setUsersmember(newUser);
         post.setTodolist(toDoList);
         postRepositories.save(post);
