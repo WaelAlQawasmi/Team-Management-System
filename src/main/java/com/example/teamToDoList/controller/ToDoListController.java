@@ -17,6 +17,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.websocket.server.PathParam;
 import java.security.Principal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,6 +73,15 @@ public class ToDoListController {
         model.addAttribute("currentuser",usersRepositorie.findByusername(p.getName()).getId());
         model.addAttribute("todoadmin",toDoList.getUsers());
         model.addAttribute("posts",postRepositories.findAllPostById(id));
+// get time now
+        LocalDateTime myDateObj = LocalDateTime.now();
+
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+        String formattedDate = myDateObj.format(myFormatObj);
+        model.addAttribute("timeNow",formattedDate);
+     ///
+
 
         // 3. If The Current User is not The Admin Of The To-do List
         if (toDoList.getUsers().getId() != usersRepositorie.findByusername(p.getName()).getId())//

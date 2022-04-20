@@ -354,13 +354,18 @@
         <div th:each="post:${posts}">
             <a class="list-group-item list-group-item-action flex-column align-items-start ">
                 <div class="comment_img_username_beside">
+
                     <div>
+
                         <img src="https://bootdey.com/img/Content/avatar/avatar1.png" width="50px" heigth="50px"
                              alt="f">
-                    </div>
+                          </div>
                     <div class="username_comment">
                         <h5 class="mb-1" th:text="${post.getUsersmember().getUsername()}"></h5>
+
                         <p class="mb-1" th:text="${post.getComment()}"></p>
+                        <span style="font-size: small;color: #0a0a0a52;" th:text="${T(com.example.teamToDoList.controller.TimeDifferenceClass).findDifference(post.getTime(),timeNow)}"></span>
+
                     </div>
                 </div>
             </a>
