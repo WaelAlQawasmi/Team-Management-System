@@ -1,4 +1,4 @@
-# teamToDoList
+# Tteam Management System
 
 ## Description 
 
@@ -104,6 +104,7 @@ ___
 
 # Domain Modeling
 ![Domain Modeling](picture/Dmain%20Modeling.png)
+
 # set up the app
 * after colon,  you must create DB on postgresql *todolist* called
 * set username and password of postgresql properties on src->main
@@ -111,3 +112,4 @@ ___
 *  >  pg_ctl -D /home/linuxbrew/.linuxbrew/var/postgres start
 * now start  spring boot app  from src->java ->TeamToDoListApplication
 * now you can go to [hrer](http://localhost:8081/) to open app in local
+
