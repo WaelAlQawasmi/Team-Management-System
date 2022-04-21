@@ -28,7 +28,7 @@ ___
 4. Mohammad Aladarbeh
 ___
 
-## Social Comminication 
+## Social Communication  and Documentations 
 
 * [Trello](https://trello.com/invite/b/iwH12lH3/ade3deb3e7a9d44370a03e5e2e1a13a8/todolistteam)
 
@@ -37,6 +37,11 @@ ___
 * [Requirements](Requirements.md)
 
 * [Project Idea](projectIdeas.md)
+* [app-features](app-features.md)
+___
+
+## Project slides presentations
+* [Presentations](teamworkmanagment.pptx)
 ___
 
 # Begin Wireframes & Software Requirements
@@ -99,3 +104,10 @@ ___
 
 # Domain Modeling
 ![Domain Modeling](picture/Dmain%20Modeling.png)
+# set up the app
+* after colon,  you must create DB on postgresql *todolist* called
+* set username and password of postgresql properties on src->main
+* start postgresql server by this command:
+*  >  pg_ctl -D /home/linuxbrew/.linuxbrew/var/postgres start
+* now start  spring boot app  from src->java ->TeamToDoListApplication
+* now you can go to [hrer](http://localhost:8081/) to open app in local
