@@ -1,4 +1,4 @@
-# Tteam Management System
+# Team Management System
 
 ## Description 
 
