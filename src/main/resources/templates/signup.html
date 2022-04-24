@@ -11,7 +11,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div th:insert="~{/unauthheader :: my-fragment3}"></div>
+<header class="header" th:fragment="my-fragment3">
+
+    <link th:href="@{/css/header.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <a href="/" class="logo">
+        <img th:src="@{/image/logo.png}" alt="">
+    </a>
+    <nav class="navbar">
+        <a href="/">home</a>
+        <a href="#about">about</a>
+        <a href="#contact">contact</a>
+        <a href="/login">Login</a>
+        <a href="/signup">Signup</a>
+    </nav>
+
+
+</header>
 <div class="container" style="margin-top: 100px;">
     <div class="forms">
         <div class="form-content">
