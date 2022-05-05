@@ -15,7 +15,7 @@ public interface ToDoListItemsRepositories extends JpaRepository<ToDoListItems,L
 List<ToDoListItems>findBytodolist_id(Long id);
 List<ToDoListItems> findByusersmember_id (Long id);
 
-
+// https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.at-query
     @Query("SELECT c FROM ToDoListItems c WHERE c.status = ?1 and c.usersmember.id = ?2")
    List<ToDoListItems>  findMytask(String ststes ,Long userId);
 
