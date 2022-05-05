@@ -2,6 +2,8 @@
 package com.example.teamToDoList.models;
 
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -20,7 +22,8 @@ import java.util.List;
 @Table(name = "users")
 @RequiredArgsConstructor
 @NoArgsConstructor
-public class Users implements UserDetails {
+
+public class Users implements UserDetails  {
 
     @Column(name = "reset_password_token")
     private String resetPasswordToken;
@@ -33,7 +36,7 @@ public class Users implements UserDetails {
     private String firstName;
     @NonNull
     private String lastName;
-
+    @JsonIgnore
     @Column (unique = true)
     @NonNull
     private String email;
@@ -90,16 +93,16 @@ public class Users implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
+    @JsonIgnore
     @OneToMany(mappedBy="users")
     List<ToDoList> todolists ;
-
+    @JsonIgnore
     @ManyToMany(mappedBy = "members", fetch = FetchType.EAGER)
     public List<ToDoList> tasks;
-
+    @JsonIgnore
     @OneToMany(mappedBy="usersmember")
     List<ToDoListItems> toDoListItems ;
-
+    @JsonIgnore
     @OneToMany(mappedBy="usersmember")
     List <post>posts;
 }

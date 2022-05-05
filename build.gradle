@@ -20,9 +20,11 @@ repositories {
 }
 
 dependencies {
+	implementation 'com.google.code.gson:gson:2.9.0'
 	implementation 'org.projectlombok:lombok:1.18.20'
     implementation 'junit:junit:4.13.1'
 	implementation 'junit:junit:4.13.1'
+	implementation 'org.json:json:20220320'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -36,6 +38,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'com.google.code.gson:gson:2.9.0'
 }
 
 tasks.named('test') {
