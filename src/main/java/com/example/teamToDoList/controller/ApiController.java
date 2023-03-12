@@ -6,6 +6,7 @@ import com.example.teamToDoList.models.apiLists;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,8 +29,14 @@ public class ApiController {
 
     @GetMapping("/lists")
     public List<ToDoList> Lists2() throws IOException {
-
         return toDoListRepositories.findAll();
     }
+
+
+    @GetMapping("/lists/{id}")
+    public ToDoList findById(@PathVariable("id")Long id){
+        return toDoListRepositories.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+    }
+
 
 }

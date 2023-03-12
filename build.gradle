@@ -39,6 +39,8 @@ dependencies {
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation 'com.google.code.gson:gson:2.9.0'
+	implementation('org.modelmapper:modelmapper:2.3.0')
+
 }
 
 tasks.named('test') {
