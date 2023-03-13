@@ -1,13 +1,16 @@
 package com.example.teamToDoList.controller;
 
 import com.example.teamToDoList.Repositories.ToDoListRepositories;
+import com.example.teamToDoList.Repositories.UsersRepositorie;
 import com.example.teamToDoList.models.ToDoList;
+import com.example.teamToDoList.models.Users;
 import com.example.teamToDoList.models.apiLists;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -21,21 +24,28 @@ import java.util.List;
 @RequestMapping("/api")
 @CrossOrigin("http://localhost:3000/")
 public class ApiController {
+
     @Autowired
     private ToDoListRepositories toDoListRepositories;
-
-
+    @Autowired
+    UsersRepositorie usersRepositorie;
 
 
     @GetMapping("/lists")
-    public List<ToDoList> Lists2() throws IOException {
+    public List<ToDoList> Lists2() {
         return toDoListRepositories.findAll();
     }
 
 
     @GetMapping("/lists/{id}")
-    public ToDoList findById(@PathVariable("id")Long id){
+    public ToDoList findById(@PathVariable("id") Long id) {
         return toDoListRepositories.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+    }
+
+    @GetMapping("/profile/{id}")
+    public Users userProfileById(@PathVariable Long id) {
+        Users newUser = usersRepositorie.finduserById(id);
+        return newUser;
     }
 
 
