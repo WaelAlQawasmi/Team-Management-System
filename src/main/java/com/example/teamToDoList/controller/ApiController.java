@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -59,5 +60,14 @@ public class ApiController {
         //
         return model;
     }
+
+    // To Get All The Task For Current User
+    @GetMapping ("/taskslist")
+    public List<ToDoListItems> taskDescription (Principal p, Model model) {
+        Users newUser = usersRepositorie.findByusername(p.getName());
+        List<ToDoListItems> todolist =  ToDoListItemsRepositories.findByusersmember_id( newUser.getId());
+        return todolist;
+    }
+
 
 }
